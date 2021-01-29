@@ -22,5 +22,13 @@ use App\Http\Controllers\Customer;
 
 
 
-Route::get('/category/list', [Category::class, "list"]);
-Route::get('/customer/list', [Customer::class, "list"]);
+Route::get('/category/list', [Category::class, "list"])->name('category.list');
+Route::get('/category/insert', [Category::class, 'insert'])->name('category.insert');
+Route::post('/category/store', [Category::class, 'store'])->name('category.store');
+Route::get('/category/edit/{id}', [Category::class, 'edit'])->name('category.edit');
+Route::post('/category/update/{id}', [Category::class, 'update'])->name('category.update');
+Route::get('/customer/list', [Customer::class, "list"])->name('customer.list');
+Route::get('/customer/insert', [Customer::class, 'insert'])->name('customer.insert');
+Route::post('/customer/store', [Customer::class, 'store'])->name('customer.store');
+Route::get('/customer/edit/{id}', [Customer::class, 'edit'])->name('customer.edit');
+Route::post('/customer/update/{id}', [Customer::class, 'update'])->name('customer.update');

@@ -5,6 +5,8 @@
 <head>
 
     @include('includes.head')
+    @stack('custom-styles')
+    @stack('custom-scripts')
 
 </head>
 

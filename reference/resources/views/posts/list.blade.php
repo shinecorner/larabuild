@@ -1,4 +1,10 @@
 @extends('layout')
+@push('custom-styles')
+    <link rel="stylesheet" href="{{asset('vendor/dataTables.bootstrap4.min.css')}}">
+@endpush
+@push('custom-scripts')
+    <script src="{{asset('vendor/dataTables.bootstrap4.min.js')}}"></script>
+@endpush
 @section('content')
     <table class="table table-striped">
         <thead>

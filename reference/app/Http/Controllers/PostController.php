@@ -39,5 +39,11 @@ class PostController extends Controller
             ]);
         return redirect('post/list');
     }
+    public function delete(Request $request, $id){
+        DB::table('post')
+            ->where('id', $id)
+            ->delete();
+        return redirect('post/list');
+    }
 
 }

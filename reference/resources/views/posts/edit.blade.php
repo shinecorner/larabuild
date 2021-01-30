@@ -1,6 +1,7 @@
 @extends('layout')
 @section('content')
 <form method="post" action="{{route('post.update',['id' => $record->id])}}">
+    <input type="hidden" name="_method" value="PUT">
     @csrf
     <div class="form-group">
         <label for="title">Title</label>

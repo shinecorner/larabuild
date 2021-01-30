@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,7 @@ Route::get('post/list', [PostController::class, 'list'])->name('post.list');
 Route::get('post/insert', [PostController::class, 'insert'])->name('post.insert');
 Route::post('post/store', [PostController::class, 'store'])->name('post.store');
 Route::get('post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
-Route::post('post/update/{id}', [PostController::class, 'update'])->name('post.update');
+Route::put('post/update/{id}', [PostController::class, 'update'])->name('post.update');
+Route::delete('post/delete/{id}', [PostController::class, 'delete'])->name('post.delete');
+
+Route::get('qbuilder', [TestController::class, 'qbuilder'])->name('test.qbuilder');

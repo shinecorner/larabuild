@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TestingCreateSize extends Migration
+class TestingCreateContacts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class TestingCreateSize extends Migration
      */
     public function up()
     {
-        Schema::connection('testing')->create('size', function (Blueprint $table) {
+        Schema::connection('testing')->create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('color');
-            $table->string('barnd');
+            $table->unsignedBigInteger('user_id');
+            $table->string('phone', 20);
+            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

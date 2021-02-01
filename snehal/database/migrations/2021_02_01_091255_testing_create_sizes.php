@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TestingCreateTableUsers extends Migration
+class TestingCreateSizes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class TestingCreateTableUsers extends Migration
      */
     public function up()
     {
-        Schema::connection('testing')->create('users', function (Blueprint $table) {
+        Schema::connection('testing')->create('sizes', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('color', 30);
             $table->timestamps();
         });
     }

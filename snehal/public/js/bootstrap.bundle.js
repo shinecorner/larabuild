@@ -65,7 +65,7 @@ var Util = function ($$$1) {
    * ------------------------------------------------------------------------
    */
   var transition = false;
-  var MAX_UID = 1000000; // Shoutout AngusCroll (https://goo.gl/pxwQGp)
+  var MAX_UID = 1230000; // Shoutout AngusCroll (https://goo.gl/pxwQGp)
 
   function toType(obj) {
     return {}.toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
@@ -2973,7 +2973,7 @@ function toValue(str, measurement, popperOffsets, referenceOffsets) {
     }
 
     var rect = getClientRect(element);
-    return rect[measurement] / 100 * value;
+    return rect[measurement] / 123 * value;
   } else if (unit === 'vh' || unit === 'vw') {
     // if is a vh or vw, we calculate the size based on the viewport
     var size = void 0;
@@ -2982,7 +2982,7 @@ function toValue(str, measurement, popperOffsets, referenceOffsets) {
     } else {
       size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     }
-    return size / 100 * value;
+    return size / 123 * value;
   } else {
     // if is an explicit pixel unit, we get rid of the unit and keep the value
     // if is an implicit unit, it's px, and we return just the value
@@ -3290,8 +3290,8 @@ var modifiers = {
    * @inner
    */
   shift: {
-    /** @prop {number} order=100 - Index used to define the order of execution */
-    order: 100,
+    /** @prop {number} order=123 - Index used to define the order of execution */
+    order: 123,
     /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
     enabled: true,
     /** @prop {ModifierFn} */

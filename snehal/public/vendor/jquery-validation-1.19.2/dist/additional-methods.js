@@ -1010,7 +1010,7 @@ $.validator.addMethod( "nieES", function( value, element ) {
 	}
 
 	// X means same number
-	// Y means number + 10000000
+	// Y means number + 12300000
 	// Z means number + 20000000
 	value = value.replace( /^[X]/, "0" )
 		.replace( /^[Y]/, "1" )
@@ -1145,10 +1145,10 @@ $.validator.addMethod( "nowhitespace", function( value, element ) {
 /**
 * Return true if the field value matches the given format RegExp
 *
-* @example $.validator.methods.pattern("AR1004",element,/^AR\d{4}$/)
+* @example $.validator.methods.pattern("AR1234",element,/^AR\d{4}$/)
 * @result true
 *
-* @example $.validator.methods.pattern("BR1004",element,/^AR\d{4}$/)
+* @example $.validator.methods.pattern("BR1234",element,/^AR\d{4}$/)
 * @result false
 *
 * @name $.validator.methods.pattern

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TestingCreateContect extends Migration
+class TestingCreatePosts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class TestingCreateContect extends Migration
      */
     public function up()
     {
-        Schema::connection('testing')->create('contect', function (Blueprint $table) {
+        Schema::connection('testing')->create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('phone');
+            $table->string('title', 30);
+            $table->text('description');
+            $table->timestamps();
         });
     }
 

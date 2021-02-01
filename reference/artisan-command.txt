@@ -2,3 +2,5 @@ php artisan make:migration create_post_table
 php artisan migrate
 php artisan make:controller PostController
 php artisan make:middleware CheckMiddleware
+
+

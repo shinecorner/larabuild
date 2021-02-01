@@ -39,5 +39,11 @@ class Category extends Controller
             ]);
         return redirect('category/list');
     }
-
+    public function delete(Request $request, $id)
+    {
+        DB::table('category')
+            ->where('id', $id)
+            ->delete();
+        return redirect('category/list');
+    }
 }

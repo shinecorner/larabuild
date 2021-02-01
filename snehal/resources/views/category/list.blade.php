@@ -3,9 +3,8 @@
     <link rel="stylesheet" href="{{asset('vendor/dataTables.bootstrap4.min.css')}}">
 @endpush
 @push('custom-scripts')
+    <script src="{{asset('vendor/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('vendor/dataTables.bootstrap4.min.js')}}"></script>
-@endpush
-@section('content')
     <script type="text/javascript">
         $(document).ready(function() {
             $('#category_list').DataTable({
@@ -13,13 +12,20 @@
             });
         });
     </script>
-    <table id="category_list" class="table table-striped">
-        <a href="{{route('category.insert')}}" class="btn btn-primary">Insert</a>
+@endpush
+@section('content')
+    <table id="category_list" class="table table-striped" style="width:170%">
+
         <thead>
+        <tr>
+            <th>
+                <a href="{{route('category.insert')}}" class="btn btn-primary">Insert</a>
+            </th>
+        </tr>
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th></th>
+            <th data-orderable="false"> </th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +36,11 @@
                 <td>
                     {{--                    <a href="{{}}" class="btn btn-primary">Delete</a>--}}
                     <a href="{{route('category.edit',['id' => $record->id])}}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('category.delete',['id' => $record->id]) }}" method="post">
+                        <input class="btn btn-danger" type="submit" value="Delete" />
+                        @method('delete')
+                        @csrf
+                    </form>
                 </td>
             </tr>
         @endforeach

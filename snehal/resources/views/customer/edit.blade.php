@@ -1,6 +1,7 @@
 @extends('layout')
 @section('content')
     <form method="post" action="{{route('customer.update',['id' => $record->id])}}">
+        <input type="hidden" name="_method" value="PUT">
         @csrf
         <div class="form-group">
             <label for="fname">First Name</label>

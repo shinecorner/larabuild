@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{asset('vendor/dataTables.bootstrap4.min.css')}}">
 @endpush
 @push('custom-scripts')
+    <script src="{{asset('vendor/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('vendor/dataTables.bootstrap4.min.js')}}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -13,15 +14,19 @@
     </script>
 @endpush
 @section('content')
+    <table id="customer_list" class="table table-striped" style="width:170%">
 
-    <a href="{{route('customer.insert')}}" class="btn btn-primary">Insert</a><br><br>
-    <table id="customer_list" class="table table-striped">
         <thead>
+        <tr>
+            <th>
+                <a href="{{route('category.insert')}}" class="btn btn-primary">Insert</a>
+            </th>
+        </tr>
         <tr>
             <th>ID</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th></th>
+            <th data-orderable="false"> </th>
         </tr>
         </thead>
         <tbody>
@@ -32,7 +37,12 @@
                 <td> {{ $record->lname }} </td>
                 <td>
                     {{--                    <a href="{{}}" class="btn btn-primary">Delete</a>--}}
-                    <a href="{{route('customer.edit',['id' => $record->id])}}" class="btn btn-primary">Edit</a>
+                    <a href="{{route('category.edit',['id' => $record->id])}}" class="btn btn-primary">Edit</a>
+                    <form action="{{ route('category.delete',['id' => $record->id]) }}" method="post">
+                        <input class="btn btn-danger" type="submit" value="Delete" />
+                        @method('delete')
+                        @csrf
+                    </form>
                 </td>
             </tr>
         @endforeach

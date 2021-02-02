@@ -23,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->boolean('finalized');
+            $table->json('detail')->nullable();
             $table->timestamps();
         });
     }

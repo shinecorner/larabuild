@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 class TestController extends Controller
 {
     public function qbuilder(){
+//        $array = [
+//            ['name' => 'Phillips Lamp', 'price' => 150],
+//            ['name' => 'Nova lamp', 'price' => 90],
+//            ['name' => 'Samsung lamp', 'price' => 70]
+//        ];
+//        echo json_encode($array);
+//        exit;
 //        DB::enableQueryLog();
 ////        $users = DB::table('users')->where([
 ////            ['name','like','j%'],
@@ -24,7 +31,7 @@ class TestController extends Controller
 //            echo $user->name;
 //        }
 
-        $users = DB::table('users')
+        /*$users = DB::table('users')
             ->select('users.*','contacts.*','orders.*','contacts.id as contact_id','orders.id as order_id')
             ->join('contacts','users.id', '=', 'contacts.user_id')
             ->join('orders','users.id', '=', 'orders.user_id')
@@ -39,7 +46,18 @@ class TestController extends Controller
 //            $recordsArray[$user->user_id]['department'][$user->order_id] = $user->department;
         }
 //        print_r($recordsArray);exit;
-        return view('qbuilder', ['records' => $recordsArray]);
+        return view('qbuilder', ['records' => $recordsArray]);*/
 
+//        DB::enableQueryLog();
+//        $orders = DB::table('orders')
+//            ->where('detail->name', 'Phillips Lamp')
+//            ->get();
+
+        $orders = DB::table('orders')
+            ->whereJsonContains('detail', ['name' => 'Nova lamp'])
+            ->get();
+
+//        dd(DB::getQueryLog());
+        dd($orders);
     }
 }

@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\DB;
 class TestController extends Controller
 {
     public function qbuilder(){
-//        $array = [
+
+        DB::enableQueryLog();
+        //        $array = [
 //            ['name' => 'Phillips Lamp', 'price' => 150],
 //            ['name' => 'Nova lamp', 'price' => 90],
 //            ['name' => 'Samsung lamp', 'price' => 70]
@@ -53,11 +55,79 @@ class TestController extends Controller
 //            ->where('detail->name', 'Phillips Lamp')
 //            ->get();
 
-        $orders = DB::table('orders')
-            ->whereJsonContains('detail', ['name' => 'Nova lamp'])
-            ->get();
+//        $orders = DB::table('orders')
+//            ->whereJsonContains('detail', ['name' => 'Nova lamp'])
+//            ->get();
 
 //        dd(DB::getQueryLog());
-        dd($orders);
+//        dd($orders);
+
+
+
+
+
+//        $users = DB::table('users')->where('id','=',7)->limit(1)->get();
+//        print_r($users);
+//        echo $users[0]->name;
+//        $user = DB::table('users')->find(2);
+//        $user = DB::table('users')->find(7);
+//        print_r($user);
+//        echo $user->name;
+//        exit;
+//        $users = DB::table('users')->where('name','=','Jigar')->orderBy('id', 'ASC')->first();
+//        print_r($users);
+//        echo $users[0]->name;
+//        $salary = DB::table('users')->where('name','=','Jigar')->orderBy('id', 'DESC')->value('salary');
+//        print_r($salary);
+//        $names = DB::table('users')->where('name','=','Jigar')->orderBy('id', 'DESC')->pluck('name','id');
+//        print_r($names);
+
+//        $chunks = DB::table('users')->orderBy('id')->chunk(5,function ($users){
+//            print_r($users);
+//            foreach ($users as $user) {
+//                echo $user->name;
+//                echo '<br>';
+//            }
+//        });
+//        print_r($chunks);
+//        $i = 2;
+//        $chunks = DB::table('users')->orderBy('id')->chunk(2,function ($users){
+//            print_r($users);
+//            if($users[0]->name == 'Jayesh'){
+//                return false;
+//            }
+//        });
+
+//        DB::table('users')->whereNull('remember_token')
+//            ->chunkById(2, function ($users) {
+////                print_r($users);
+//                foreach ($users as $user) {
+//                    DB::table('users')
+//                        ->where('id', $user->id)
+//                        ->update(['remember_token' => false]);
+//                }
+//        });
+
+//        $price = DB::table('orders')->max('price');
+//        echo $price;exit;
+//        $salary = DB::table('users')
+//            ->where('designation', 'qa')
+//            ->avg('salary');
+//        print_r($salary);
+
+//                $users = DB::table('users')
+//                    ->select('designation',DB::raw('avg(salary) as average_salary'))
+//                    ->groupBy('designation')
+//                    ->get();
+//        print_r($users);
+
+//        var_dump(DB::table('orders')->where('finalized', 0)->get());
+//        if (DB::table('orders')->where('finalized', 1)->exists()) {
+//            exit('1111');
+//        }
+//        $users = DB::table('users')->select('name')->distinct()->get();
+//        print_r($users);
+        dd(DB::getQueryLog());
     }
+
 }

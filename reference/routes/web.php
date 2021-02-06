@@ -28,3 +28,5 @@ Route::put('post/update/{id}', [PostController::class, 'update'])->name('post.up
 Route::delete('post/delete/{id}', [PostController::class, 'delete'])->name('post.delete');
 
 Route::get('qbuilder', [TestController::class, 'qbuilder'])->name('test.qbuilder');
+Route::get('eloquent', [TestController::class, 'eloquent'])->name('test.eloquent');
+

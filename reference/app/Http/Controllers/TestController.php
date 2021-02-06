@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Flight;
 
 class TestController extends Controller
 {
@@ -364,6 +365,58 @@ class TestController extends Controller
         // echo '1';
         // dd(DB::getQueryLog());
 
+    }
+    public function eloquent(Request $request){
+        // echo time();    
+        // $obj = new Flight;
+        // $obj->name = 'Delhi-Goa';
+        // $obj->number = '45712';
+        // $obj->departure = 'Delhi';
+        // $obj->destination = 'Goa';
+        // $obj->price = '2000';
+        // // $obj->active = '1';
+        // $obj->departed = '1';
+        // $obj->save();
+
+        // dd(Flight::all());
+        // foreach (Flight::all() as $flight) {
+        //         echo $flight->name;
+        // }
+
+        // $flights = Flight::where('active', 1)
+        //        ->orderBy('name')
+        //        ->take(10)
+        //        ->get();
+
+        // $flight = Flight::where('number', '45712')->first();
+        // dd($flight);
+        // dd($flight->fresh());
+
+        // $flight = Flight::where('number', '45712')->first();
+        // $flight->number = '456';
+        // // echo $flight->number;
+        // $flight->save();
+        // $flight->refresh();
+        // // $flight->number; // "FR 900"
+        // echo $flight->number;
+
+        // $flights = Flight::all();
+        // $flights = $flights->reject(function ($flight) {
+        //         return $flight->cancelled;
+        //     });
+        // foreach($flights as $flight){
+        //         echo $flight->cancelled;
+        //         echo '<br>';
+        //         echo $flight->destination;
+        //         echo '<br>';echo '<br>';echo '<br>';
+        // }
+
+        Flight::chunk(2, function ($flights) {
+                dump($flights);
+                // foreach ($flights as $flight) {
+                //     //
+                // }
+        });
     }
 
 }

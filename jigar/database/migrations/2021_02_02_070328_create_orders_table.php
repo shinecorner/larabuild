@@ -16,12 +16,14 @@ class CreateOrdersTable extends Migration
         Schema::connection('testing')->create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->integer('price');
-            $table->enum('department',['electronic','grocery','cosmetic']);
+            $table->enum('department', ['electronic', 'grocery', 'cosmetic']);
             $table->string('city');
             $table->string('state');
             $table->boolean('finalized');
+            $table->json('detail')->nullable();
             $table->timestamps();
         });
     }

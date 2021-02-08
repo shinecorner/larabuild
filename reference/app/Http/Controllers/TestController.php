@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Destination;
 use App\Models\Flight;
 
 class TestController extends Controller
@@ -367,6 +368,7 @@ class TestController extends Controller
 
     }
     public function eloquent(Request $request){
+        DB::enableQueryLog();
         // echo time();    
         // $obj = new Flight;
         // $obj->name = 'Delhi-Goa';
@@ -411,12 +413,45 @@ class TestController extends Controller
         //         echo '<br>';echo '<br>';echo '<br>';
         // }
 
-        Flight::chunk(2, function ($flights) {
-                dump($flights);
-                // foreach ($flights as $flight) {
-                //     //
-                // }
-        });
-    }
+        // Flight::chunk(2, function ($flights) {
+        //         dump($flights);
+        //         // foreach ($flights as $flight) {
+        //         //     //
+        //         // }
+        // });
+
+        // Flight::where('departed', true)
+        // ->chunkById(200, function ($flights) {
+        //     $flights->each->update(['departed' => false]);
+        // }, $column = 'id');
+
+        // foreach (Flight::whereIn('destination', ['Elfriedaborough', 'Lake Mario', 'Rajkot'])->cursor() as $flight) {
+        //         echo $flight->number;
+        //         echo '<br>';
+        // }
+            
+        // $destinations = Destination::addSelect(['last_flight' => Flight::select('name')
+        //         ->whereColumn('destination_id', 'destinations.id')
+        //         ->orderByDesc('arrived_at')
+        //         ->limit(1)
+        //         ])->get();
+        //         // ($destinations);
+        //         dd(DB::getQueryLog());
+
+        // Destination::orderByDesc(
+        //         Flight::select('arrived_at')
+        //             ->whereColumn('destination_id', 'destinations.id')
+        //             ->orderByDesc('arrived_at')
+        //             ->limit(1)
+        //     )->get();
+        // dd(DB::getQueryLog());
+
+        // $model = Flight::where('number', '>', 100000)->firstOr(function () {
+        //         throw new \Exception('Jigar customise message');
+        //     });
+        //  dd($model);
+
+                // $flight = Flight::where('number', '>', 100000)->firstOrFail();                
+        }
 
 }

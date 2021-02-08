@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\FlightController;
 use App\Http\Controllers\TestController;
+use App\Models\Flight;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +31,8 @@ Route::delete('post/delete/{id}', [PostController::class, 'delete'])->name('post
 
 Route::get('qbuilder', [TestController::class, 'qbuilder'])->name('test.qbuilder');
 Route::get('eloquent', [TestController::class, 'eloquent'])->name('test.eloquent');
+Route::get('/api/flights/{id}', function ($id) {    
+    return Flight::findOrFail($id);
+});
 
+Route::get('flight/store', [FlightController::class, 'store'])->name('flight.store');

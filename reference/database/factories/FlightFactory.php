@@ -29,6 +29,7 @@ class FlightFactory extends Factory
             'price' => $this->faker->numberBetween(1000,5000),
             'active' => intval($this->faker->boolean),
             'departed' => intval($this->faker->boolean),
+            'arrived_at' => $this->faker->dateTime()
         ];
     }
 }

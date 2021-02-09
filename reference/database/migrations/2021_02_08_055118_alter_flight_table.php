@@ -14,10 +14,11 @@ class AlterFlightTable extends Migration
     public function up()
     {
         Schema::table('flights', function (Blueprint $table) {
-            $table->unsignedBigInteger('destination_id');
+            $table->unsignedBigInteger('destination_id')->nullable();
             $table->foreign('destination_id')->references('id')->on('destinations')->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->datetime('arrived_at');
+            $table->softDeletes();
         });
     }
 
@@ -28,7 +29,7 @@ class AlterFlightTable extends Migration
      */
     public function down()
     {
-        Schema::table('flights', function (Blueprint $table) {            
+        Schema::table('flights', function (Blueprint $table) {
             $table->dropForeign(['destination_id']);
             $table->dropColumn('destination_id');
         });

@@ -31,7 +31,8 @@ Route::delete('post/delete/{id}', [PostController::class, 'delete'])->name('post
 
 Route::get('qbuilder', [TestController::class, 'qbuilder'])->name('test.qbuilder');
 Route::get('eloquent', [TestController::class, 'eloquent'])->name('test.eloquent');
-Route::get('/api/flights/{id}', function ($id) {    
+Route::get('relation', [TestController::class, 'relation'])->name('test.relation');
+Route::get('/api/flights/{id}', function ($id) {
     return Flight::findOrFail($id);
 });
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterPostsTable extends Migration
+class CreateRoleUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,17 @@ class AlterPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
+        Schema::create('role_user', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
                 ->onDelete('cascade');
+
+            $table->unsignedBigInteger('role_id')->nullable();
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 
@@ -27,6 +34,6 @@ class AlterPostsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('role_user');
     }
 }

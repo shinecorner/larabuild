@@ -136,11 +136,9 @@ class FlightController extends Controller
 //            return $user;
 //        });
 
-        $user = User::findOrFail(1);
-
-        $user->salary = 10000;
-
-        $user->save();
+//        $user = User::findOrFail(1);
+//        $user->salary = 10000;
+//        $user->save();
 
 
 //        dd(DB::getQueryLog());

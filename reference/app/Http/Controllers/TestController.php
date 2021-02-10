@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Destination;
 use App\Models\Flight;
+use App\Models\User;
+use App\Models\Post;
+use App\Models\Phone;
 
 class TestController extends Controller
 {
@@ -329,8 +334,8 @@ class TestController extends Controller
         //             return $query->where('designation', $designation);
         //         })
         //         ->get();
-        //  dd($users);   
-        
+        //  dd($users);
+
         // $sortBy = $request->input('sort_by');
 
         // $users = DB::table('users')
@@ -345,9 +350,9 @@ class TestController extends Controller
         // $id = DB::table('size')->insertGetId(
         //         ['cloth_size' => 'XXL']
         //     );
-            
+
         // DB::table('users')->upsert([
-        //         ['name' => 'Jigar', 'designation' => 'designer', 'salary' => 9990], 
+        //         ['name' => 'Jigar', 'designation' => 'designer', 'salary' => 9990],
         //     ], ['name', 'designation'], ['salary']);
 
         // DB::table('users')
@@ -355,7 +360,7 @@ class TestController extends Controller
         //         ['name' => 'Jigar', 'designation' => 'designer'],
         //         ['salary' => '7500']
         // );
-        
+
         // $affected = DB::table('orders')
         //       ->where('id', 1)
         //       ->update(['detail->price' => 200]);
@@ -369,7 +374,7 @@ class TestController extends Controller
     }
     public function eloquent(Request $request){
         DB::enableQueryLog();
-        // echo time();    
+        // echo time();
         // $obj = new Flight;
         // $obj->name = 'Delhi-Goa';
         // $obj->number = '45712';
@@ -429,7 +434,7 @@ class TestController extends Controller
         //         echo $flight->number;
         //         echo '<br>';
         // }
-            
+
         // $destinations = Destination::addSelect(['last_flight' => Flight::select('name')
         //         ->whereColumn('destination_id', 'destinations.id')
         //         ->orderByDesc('arrived_at')
@@ -451,7 +456,31 @@ class TestController extends Controller
         //     });
         //  dd($model);
 
-                // $flight = Flight::where('number', '>', 100000)->firstOrFail();                
+                // $flight = Flight::where('number', '>', 100000)->firstOrFail();
+        }
+        public function relation(){
+//            $user = User::find(3);
+//            return $user->phone;
+
+//            $phone = Phone::find(1);
+//            return $phone->user;
+
+//            $post = Post::find(7);
+//            return $post->comments;
+//            foreach($post->comments as $comment){
+//                echo $comment->brief;
+//            }
+//            $comment = Comment::find(2);
+//            return $comment->post;
+//            $post = Post::find(6);
+//            return $post->user->designation;
+
+//            $user = User::find(4);
+//            return $user->roles;
+
+//            return $roles = User::find(4)->roles()->orderBy('role_name')->get();
+//            $role = Role::find(3);
+//            return $role->users;
         }
 
 }

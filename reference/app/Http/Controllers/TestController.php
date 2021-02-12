@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use App\Models\Role;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Destination;
@@ -11,6 +12,9 @@ use App\Models\Flight;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Phone;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Eloquent\Builder;
+//use Illuminate\Database\Query\Builder as QBuilder;
 
 class TestController extends Controller
 {
@@ -481,6 +485,74 @@ class TestController extends Controller
 //            return $roles = User::find(4)->roles()->orderBy('role_name')->get();
 //            $role = Role::find(3);
 //            return $role->users;
+//            $user = User::find(4);
+//            return $user->roles;
+//            foreach ($user->roles as $role) {
+//                echo $role->pivot->created_at;
+//            }
+//            $post = Post::find(6);
+//            $alias = $post->getMorphClass();
+//            $class = Relation::getMorphedModel($alias);
+//            echo $class;
+//            $image = $post->image;
+//            echo $image->url;
+
+//            $post = Post::find(6);
+
+//            dd($post->comments);
+//            foreach ($post->comments as $comment) {
+//                echo $comment->brief;
+//            }
+
+//            $comment = Comment::find(1);
+//            $obj = $comment->commentable;
+//            echo $obj->description;
+//
+//            $comment = Comment::find(3);
+//            $obj = $comment->commentable;
+//            echo $obj->title;
+
+//            $post = Video::find(6);
+//
+//            foreach ($post->tags as $tag) {
+//                echo $tag->name;
+//                echo '<br>';
+//            }
+//            $user = User::find(4);
+//            return $user->posts()->where('active', 1)->get();
+
+//            $user = User::find(4);
+//            return User::find(4)->posts()
+//                ->where('active', 1)
+//                ->orWhere('votes', '>=', 100)
+//                ->get();
+
+//            return User::find(4)->posts()
+//                ->where(function (Builder $query) {
+//                    return $query->where('active', 1)
+//                        ->orWhere('votes', '>=', 100);
+//                })
+//                ->get();
+
+//            return $posts = Post::has('comments')->get();
+//            return $posts = Post::has('comments', '>=', 1)->get();
+
+//            return $posts = Post::has('comments.image')->get();
+
+//            return Post::whereHas('comments', function (Builder $query) {
+//                $query->where('brief', 'like', 'India%');
+//            })->get();
+
+//            return $posts = Post::whereHas('comments', function (Builder $query) {
+//                $query->where('brief', 'like', 'India%');
+//            }, '>=', 2)->get();
+
+//            return $posts = Post::doesntHave('comments')->get();
+
+            return $posts = Post::whereHas('comments', function (Builder $query) {
+                $query->where('brief', 'like','India%');
+            })->get();
+
         }
 
 }

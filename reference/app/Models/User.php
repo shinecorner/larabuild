@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Image;
 
 class User extends Authenticatable
 {
@@ -48,6 +49,23 @@ class User extends Authenticatable
     }
     public function roles()
     {
-        return $this->belongsToMany(Role::class);
+//        return $this->belongsToMany(Role::class)->as('subscription')->withTimestamps();
+        return $this->belongsToMany(Role::class)->withTimestamps();
+
+//        return $this->belongsToMany(Role::class)
+//            ->wherePivot('approved', 1)
+//            ->wherePivot('active', 1);
+//        ->wherePivotIn('priority', [1, 2]);
+    }
+    /**
+     * Get the user's image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }

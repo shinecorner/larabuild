@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Image;
 
 class Post extends Model
 {
@@ -26,7 +27,22 @@ class Post extends Model
 //        });
     }
 
-    public function comments(){
-        return $this->hasMany(Comment::class);
+//    public function comments(){
+//        return $this->hasMany(Comment::class);
+//    }
+    /**
+     * Get the post's image.
+     */
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 }

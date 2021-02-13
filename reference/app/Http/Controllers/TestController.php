@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Contact;
 use App\Models\Role;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -12,9 +13,11 @@ use App\Models\Flight;
 use App\Models\User;
 use App\Models\Post;
 use App\Models\Phone;
+use App\Models\ActivityFeed;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Builder;
 //use Illuminate\Database\Query\Builder as QBuilder;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class TestController extends Controller
 {
@@ -549,9 +552,108 @@ class TestController extends Controller
 
 //            return $posts = Post::doesntHave('comments')->get();
 
-            return $posts = Post::whereHas('comments', function (Builder $query) {
-                $query->where('brief', 'like','India%');
-            })->get();
+//            return $posts = Post::whereHas('comments', function (Builder $query) {
+//                $query->where('brief', 'like','India%');
+//            })->get();
+
+//            return $comments = Comment::whereHasMorph(
+//                'commentable',
+//                [Post::class, Video::class],
+//                function (Builder $query) {
+//                    $query->where('title', 'like', 'India%');
+//                }
+//            )->get();
+
+//            return $comments = Comment::whereDoesntHaveMorph(
+//                'commentable',
+//                Post::class,
+//                function (Builder $query) {
+//                    $query->where('title', 'like', 'India%');
+//                }
+//            )->get();
+
+//            return $comments = Comment::whereHasMorph(
+//                'commentable',
+//                [Post::class, Video::class],
+//                function (Builder $query, $type) {
+//                    $column = $type === Post::class ? 'description' : 'title';
+//
+//                    $query->where($column, 'like', 'Trump%');
+//                }
+//            )->get();
+
+//            $comments = Comment::whereHasMorph('commentable', '*', function (Builder $query) {
+//                $query->where('title', 'like', 'foo%');
+//            })->get();
+
+//            $posts = Post::withCount('comments')->get();
+//
+//            foreach ($posts as $post) {
+//                echo $post->comments_count;
+//            }
+
+//            return $posts = Post::withCount(['comments' => function (Builder $query) {
+//                $query->where('brief', 'like', 'India%');
+//            }])->get();
+
+//            return $posts = Post::withCount([
+//                'comments',
+//                'comments as pending_comments_count' => function (Builder $query) {
+//                    $query->where('approved', false);
+//                },
+//            ])->get();
+
+//            $post = Post::find(6);
+//            return $post->loadCount('comments');
+//            return $post->loadCount(['comments' => function($query){
+//                $query->where('approved', '=', 1);
+//            }]);
+
+//            return $posts = Post::withAvg('comments', 'votes')->get();
+//            $post = Post::find(7);
+//
+//            return $post->loadSum('comments', 'votes');
+
+//            return $activities = ActivityFeed::with([
+//                'parentable' => function (MorphTo $morphTo) {
+//                    $morphTo->morphWithCount([
+//                        Post::class => ['comments'],
+//                        Video::class => ['tags'],
+//                    ]);
+//                }])->get();
+
+//            $activities = ActivityFeed::with('parentable')->get();
+//
+//            return $activities->loadMorphCount('parentable', [
+//                Video::class => ['tags'],
+//                Post::class => ['comments'],
+//            ]);
+
+//            $users = User::all();
+//
+//            foreach($users as $user)
+//            {
+//                dump($user->roles);
+//            }
+//            return Contact::with('user.roles')->get();
+//            return $activities = ActivityFeed::query()
+//                ->with(['parentable' => function (MorphTo $morphTo) {
+//                    $morphTo->morphWith([
+//                        Video::class => ['tags'],
+//                        Post::class => ['comments'],
+//                    ]);
+//                }])->get();
+//            dd($activities);
+
+//            return User::with('phone:id,user_id,number')->get();
+//            return User::find(1);
+//            return User::without('phone')->find(1);
+
+//            return $users = User::with(['roles' => function ($query) {
+////                $query->where('role_name', 'like', '%admin%');
+//                $query->whereIn('role_name', ['superadmin','editor']);
+//            }])->get();
+
 
         }
 

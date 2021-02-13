@@ -45,4 +45,8 @@ class Post extends Model
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
+    public function activityFeeds()
+    {
+        return $this->morphMany(ActivityFeed::class, 'parentable');
+    }
 }

@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
+//    protected $with = ['phone:id,user_id,number'];
     /**
      * The attributes that should be hidden for arrays.
      *

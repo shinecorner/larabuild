@@ -14,9 +14,12 @@ class Post extends Model
     /**
      * Get the post that owns the comment.
      */
+
+    protected $touches = ['user'];
+
     public function user()
     {
-        return $this->belongsTo(User::class)->first();
+        return $this->belongsTo(User::class);
 //        return $this->belongsTo(User::class)->withDefault([
 //            'name' => 'guest',
 //        ]);

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 
 class Comment extends Model
 {
+    protected $fillable = ['brief'];
     use HasFactory;
 //    public function post(){
 //        return $this->belongsTo(Post::class);

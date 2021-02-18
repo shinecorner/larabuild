@@ -654,7 +654,78 @@ class TestController extends Controller
 //                $query->whereIn('role_name', ['superadmin','editor']);
 //            }])->get();
 
+//            $comment = new Comment(['brief' => 'Command is working']);
+//
+//            $post = Post::find(10);
+//
+//            $post->comments()->save($comment);
 
+//            $post = Post::find(10);
+//            $post->comments()->saveMany([
+//                new Comment(['brief' => 'A new comment.']),
+//                new Comment(['brief' => 'Another new comment.']),
+//            ]);
+//            $user = User::with('posts')->where('id', 3)->first();
+//            $user->posts()->saveMany([
+//                new Post(['title' => 'Bird nest', 'description' => 'Various types of bird nests']),
+//                new Post(['title' => 'Authors', 'description' => 'Authors of Italy']),
+//            ]);
+//            $user->refresh();
+//            return $user->posts;
+
+//            $user = User::find(4);
+//
+//            $user->name = "Ajay devgan";
+//            $user->posts[0]->title = 'Trump has left whitehouse';
+//            $user->posts[0]->comments[0]->brief = 'Trump has left whitehouse. Biden take charge';
+//
+//            $user->push();
+
+//            $post = Post::find(8);
+////            $post->user()->associate(User::find(4));
+////
+////            $post->save();
+//            $post->user()->dissociate();
+//            $post->save();
+
+//            $user = User::find(1);
+
+//            $user->roles()->attach(2);
+//            $user->roles()->attach(2,['priority' => 2]);
+
+//            $user = User::find(1);
+//            $user->roles()->detach();
+
+//            $user = User::find(1);
+//            $user->roles()->detach([2, 3]);
+
+//            $user->roles()->attach([
+//                2 => ['priority' => 4],
+//                3 => ['priority' => 5],
+//            ]);
+
+//            $user = User::find(1);
+//            $user->roles()->sync([1, 2]);
+
+//            $user = User::find(1);
+//            $user->roles()->sync([3 => ['priority' => 5], 1]);
+
+//            $user = User::find(1);
+//            $user->roles()->syncWithoutDetaching([2]);
+
+//            $user = User::find(1);
+//
+//            $user->roles()->updateExistingPivot(2, [
+//                'priority' => 2,
+//            ]);
+
+//            $post = Post::find(7);
+//            $post->title = "Ind vs Aus";
+//            $post->save();
+
+//            $post = Post::find(14);
+//            $post->description = "Author of germany";
+//            $post->save();
         }
 
 }

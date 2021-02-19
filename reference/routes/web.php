@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\TestController;
 use App\Models\Flight;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,31 @@ Route::get('/api/flights/{id}', function ($id) {
 });
 
 Route::get('flight/store', [FlightController::class, 'store'])->name('flight.store');
+//Route::redirect('relation', '/qbuilder');
+//Route::any('/phpinfo', function () {
+//    return phpinfo();
+//});
+
+//Route::any('/phpinfo', function (Request $request) {
+//    dd($request->all());
+//});
+
+//Route::view('/gm', 'greetings', ['name' => 'Taylor']);
+//Route::get('/gm/{id}', function ($id) {
+//    return 'User '.$id;
+//});
+//Route::get('/gm/{id}/message/{message?}', [TestController::class, 'gm']);
+
+//Route::get('/gm/{id}/message/{message?}', [TestController::class, 'gm'])
+//    ->where('id', '[0-9]+');
+
+//Route::get('/user-profile/{username}/message/{message?}', [TestController::class, 'profile'])
+//    ->whereAlphaNumeric('username');
+
+//Route::get('/user-profile/{username}/message/{message?}', [TestController::class, 'profile'])
+//    ->whereUuid('message');
+
+//Route::get('/gm/{id}/message/{message?}', [TestController::class, 'gm']);
+
+Route::get('/gm/{id}/message/{message?}', [TestController::class, 'gm'])->name('gm');
+Route::get('/message-me', [TestController::class, 'messageMe'])->name('msg');

@@ -23,6 +23,7 @@ class TestController extends Controller
 {
     public function qbuilder(Request $request){
 
+        return "this is qbuilder";
         DB::enableQueryLog();
 //                $array = [
 //            ['name' => 'Phillips Lamp', 'price' => 150],
@@ -726,6 +727,23 @@ class TestController extends Controller
 //            $post = Post::find(14);
 //            $post->description = "Author of germany";
 //            $post->save();
+            dd("kkk");
+//            return redirect('qbuilder');
         }
-
+        public function gm(Request $request, $id, $message = "Are you OK?"){
+            return "Hello User " . $id . " " . $message;
+        }
+    public function profile(Request $request, $username, $message = "Are you OK?"){
+        return "Hello User " . $username . " " . $message;
+    }
+    public function messageMe(Request $request){
+//        return redirect("gm/56/message/How-are-you");
+        if($request->route()->named('msg')){
+            return "correct";
+        }
+        else{
+            return "Incorrect";
+        }
+        return redirect()->route('gm',['id' => 56, 'message' => 'How the development works going on?']);
+    }
 }

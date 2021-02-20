@@ -11,6 +11,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $connection = 'testing';
     /**
      * The attributes that are mass assignable.
      *
@@ -40,4 +41,27 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function phone()
+    {
+        return $this->hasOne(Phone::class);
+        //        return $this->hasOne(Phone::class, 'user_id','id');
+
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    
 }

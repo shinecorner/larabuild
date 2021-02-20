@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateColorTable extends Migration
+class CreateCustomerContactTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateColorTable extends Migration
      */
     public function up()
     {
-        Schema::connection('testing')->create('color', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('cloth_color');
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->foreign('customer_id')->references('id')->on('customer')->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->integer('contact');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateColorTable extends Migration
      */
     public function down()
     {
-        Schema::connection('testing')->dropIfExists('color');
+        Schema::dropIfExists('contacts');
     }
 }

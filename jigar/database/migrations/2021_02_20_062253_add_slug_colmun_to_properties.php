@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Contacts extends Migration
+class AddSlugColmunToProperties extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class Contacts extends Migration
      */
     public function up()
     {
-        //
-        Schema::connection('testing')->create('contacts', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('user_id');
-            $table->integer('contact');
-            $table->timestamps();
+        Schema::table('properties', function (Blueprint $table) {
+            $table->string('slug')->after('sq_feet')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ class Contacts extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('properties', function (Blueprint $table) {
+            $table->dropColumn('slug');
+        });
     }
 }

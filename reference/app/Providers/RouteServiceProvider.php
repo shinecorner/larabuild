@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Post;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -36,6 +37,11 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
 //        Route::pattern('id', '[0-9]+');
+//        Route::model('post', Post::class);
+//        Route::bind('post', function ($value) {
+//            return Post::where('id', $value)->where('active', 1)->firstOrFail();
+//        });
+
         $this->configureRateLimiting();
 
         $this->routes(function () {
@@ -60,5 +66,12 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(optional($request->user())->id ?: $request->ip());
         });
+        RateLimiter::for('postratelimit', function (Request $request) {
+//            return Limit::perMinute(3);
+            return Limit::perMinute(5)->response(function () {
+                return response('Aatli badhi vakhat refresh na karo bhai', 429);
+            });
+        });
+
     }
 }

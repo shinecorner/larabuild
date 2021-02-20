@@ -22,7 +22,7 @@
                 <td> {{ $record->title }} </td>
                 <td> {{ $record->description }} </td>
                 <td>
-                    <a href="{{route('post.edit',['id' => $record->id])}}" class="btn btn-primary">Edit</a>
+                    <a href="{{route('post.edit',['post' => $record->id])}}" class="btn btn-primary">Edit</a>
                     <form action="{{ route('post.delete',['id' => $record->id]) }}" method="post">
                         <input class="btn btn-danger" type="submit" value="Delete" />
                         @method('delete')

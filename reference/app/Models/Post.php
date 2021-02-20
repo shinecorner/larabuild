@@ -14,7 +14,14 @@ class Post extends Model
     /**
      * Get the post that owns the comment.
      */
-
+//    public function getRouteKeyName()
+//    {
+//        return 'slug';
+//    }
+//    public function resolveRouteBinding($value, $field = null)
+//    {
+//        return $this->where('id', $value)->where('active', 1)->firstOrFail();
+//    }
     protected $touches = ['user'];
 
     public function user()

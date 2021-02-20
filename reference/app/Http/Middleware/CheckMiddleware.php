@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class CheckMiddleware
 {
@@ -16,7 +17,7 @@ class CheckMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        echo "this line will print every page";
+        echo Route::currentRouteAction();
         return $next($request);
     }
 }

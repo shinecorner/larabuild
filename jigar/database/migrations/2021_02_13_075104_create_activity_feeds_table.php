@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateColorTable extends Migration
+class CreateActivityFeedsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateColorTable extends Migration
      */
     public function up()
     {
-        Schema::connection('testing')->create('color', function (Blueprint $table) {
+        Schema::connection('testing')->create('activity_feeds', function (Blueprint $table) {
             $table->id();
-            $table->string('cloth_color');
+            $table->string('detail', 50);
+            $table->unsignedBigInteger('parentable_id');
+            $table->string('parentable_type', 100);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateColorTable extends Migration
      */
     public function down()
     {
-        Schema::connection('testing')->dropIfExists('color');
+        Schema::dropIfExists('activity_feeds');
     }
 }

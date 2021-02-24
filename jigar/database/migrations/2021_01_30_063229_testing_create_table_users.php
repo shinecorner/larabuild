@@ -32,6 +32,6 @@ class TestingCreateTableUsers extends Migration
      */
     public function down()
     {
-        //
+        Schema::connection('testing')->dropIfExists('users');
     }
 }

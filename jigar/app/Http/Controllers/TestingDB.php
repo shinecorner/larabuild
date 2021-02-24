@@ -5,12 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Flight;
+use App\Models\User;
+use App\Models\Post;
+use App\Models\Phone;
+use App\Models\Comment;
+use App\Models\Role;
+use App\Models\Image;
+use App\Models\Video;
+use App\Models\Tag;
+use App\Models\Contact;
+use App\Models\ActivityFeed;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class TestingDB extends Controller
 {
   //
   public function qbuilder()
   {
+    // return "this is redirect";
 
     //   $users =  DB::connection('testing')->table('users')->where('name','jigar')->get();
     //   dd($users);
@@ -493,6 +507,301 @@ class TestingDB extends Controller
     // print_r($deletedRows);
 
     // exit('hello');
+  }
+
+  public function eloquent(Request $request)
+  {
+    // exit('hello');
+    // Flight::chunk(2, function ($flights) {
+    //   dd($flights);
+    // });
+
+
+  }
+  public function relation()
+  {
+    // $user = User::find(2);
+    // return $user->phone();
+
+    // $phone = Phone::find(3);
+    // return $phone->user;
+
+
+    // return $post->comments();
+
+    // $post = Post::find(1);
+    // foreach($post->comments as $comment)
+    // {
+    //   echo $comment->brief;
+    // }
+
+    // $comment = Comment::find(2);
+    // return $comment->post->discription;
+
+    // $user = User::find(1);
+    // return $user->roles;
+
+    //  $roles = User::find(2)->roles()->orderBy('role_name')->get();
+    //   return $roles;
+
+    // $role = Role::find(1);
+    // return $role->users;
+
+
+    //morph
+
+
+    // $post = Post::find(1);
+    // $image = $post->image;
+    // return $image;
+
+    // $image = Image::find(1);
+
+    // $imageable = $image->imageable;
+
+
+
+    // $image = Image::find(1);
+    // $imageable = $image->imageable;
+    // return $imageable;
+
+    // $post = Post::find(1);
+
+    // foreach ($post->comments as $comment) {
+    //   echo $comment->brief;
+    // }
+
+    // $comment = Comment::find(1);
+    // $commentable = $comment->commentable;
+    // echo $commentable->title;
+
+
+    // $post = Post::find(1);
+    // foreach ($post->tags as $tag) {
+    //   echo $tag->name;
+    //   echo '<br>';
+    // ?
+
+    // $user = User::find(1);
+    // return $user->posts()->where('active', 1)->get();
+
+    // return User::find(1)->posts()
+    //     ->where('active', 1)
+    //     ->orWhere('votes', '>=', 100)
+    //     ->get();
+
+    // return User::find(4)->posts()
+    //   ->where(function (Builder $query) {
+    //     return $query->where('active', 1)
+    //       ->orWhere('votes', '>=', 100);
+    //   })
+    //   ->get();
+
+    // return $posts = Post::has('comments')->get();
+
+    // return $posts = Post::has('comments', '>=', 1)->get();
+
+    // return $posts = Post::has('comments.image')->get();
+
+
+    // return Post::whereHas('comments', function (Builder $query) {
+    //   $query->where('brief', 'like', 'y%');
+    // })->get();
+
+    // return $posts = Post::whereHas('comments', function (Builder $query) {
+    //   $query->where('brief', 'like', 'y%');
+    // }, '>=', 2)->get();
+
+    // return $posts = Post::doesntHave('comments')->get();
+
+    //   return $posts = Post::whereHas('comments', function (Builder $query) {
+    //     $query->where('brief', 'like','y%');
+    // })->get();
+
+
+
+    // return $comments = Comment::whereHasMorph(
+    //                  'commentable',
+    //                  [Post::class, Video::class],
+    //                  function (Builder $query) {
+    //                      $query->where('title', 'like', 'php%');
+    //                  }
+    //              )->get();
+
+
+    // return $comments = Comment::whereHasMorph(
+    //   'commentable',
+    //   [Post::class, Video::class],
+    //   function (Builder $query, $type) {
+    //     $column = $type === Post::class ? 'discription' : 'title';
+    //     $query->where($column, 'like', 'l%');
+    //   }
+    // )->get();
+
+
+    // return $comments = Comment::whereHasMorph('commentable', '*', function (Builder $query) {
+    //   $query->where('title', 'like', 'p%');
+    // })->get();
+
+    // $posts = Post::withCount('comments')->get();
+    // foreach ($posts as $post) {
+    //   echo $post->comments_count;
+    // }
+
+    // return $posts = Post::withCount(['comments' => function (Builder $query) {
+    //   $query->where('brief', 'like', 'y%');
+    // }])->get();
+
+    // return $posts = Post::withCount([
+    //   'comments',
+    //   'comments as pending_comments_count' => function (Builder $query) {
+    //     $query->where('approved', false);
+    //   },
+    // ])->get();
+
+    // $post = Post::find(4);
+    // return $post->loadCount(['comments' => function ($query) {
+    //   $query->where('approved', '=', 1);
+    // }]);
+
+
+    // return $posts = Post::withAvg('comments', 'votes')->get();
+
+    // $post = Post::find(4);
+    // return $post->loadSum('comments', 'votes');
+
+    // return $activities = ActivityFeed::with([
+    //   'parentable' => function (MorphTo $morphTo) {
+    //     $morphTo->morphWithCount([
+    //       Post::class => ['comments'],
+    //       Video::class => ['tags'],
+    //     ]);
+    //   }
+    // ])->get();
+
+    // $activities = ActivityFeed::with('parentable')->get();
+    // return $activities->loadMorphCount('parentable', [
+    //   Video::class => ['tags'],
+    //   Post::class => ['comments'],
+    // ]);
+
+
+    // $users = User::all();
+
+    // foreach ($users as $user) {
+    //   dump($user->roles);
+    // }
+
+
+    // return Contact::with('user.roles')->get();
+
+
+    //  return $activities = ActivityFeed::query()
+    //   ->with(['parentable' => function (MorphTo $morphTo) {
+    //     $morphTo->morphWith([
+    //       Video::class => ['tags'],
+    //       Post::class => ['comments'],
+    //     ]);
+    //   }])->get();
+
+    // return User::with('phone:id,user_id,number')->get();
+
+    // return User::without('phone')->find(1);
+
+    // return $users = User::with(['roles' => function ($query) {
+    //   $query->whereIn('role_name', ['editor', 'content writer']);
+    // }])->get();
+
+    // $comment = new Comment(['brief' => 'Command is working']);
+    // $post = Post::find(4);
+    // $post->comments()->save($comment);
+
+    // $post = Post::find(2);
+    // $post->comments()->saveMany([
+    //   new Comment(['brief' => 'A new comment.']),
+    //   new Comment(['brief' => 'Another new comment.']),
+    // ]);
+
+
+    // $user = User::with('posts')->where('id', 3)->first();
+    // $user->posts()->saveMany([
+    //   new Post(['title' => 'Bird nest', 'discription' => 'Various types of bird nests']),
+    //   new Post(['title' => 'Authors', 'discription' => 'Authors of Italy']),
+    // ]);
+
+    // $user->refresh();
+    // return $user->posts;
+
+
+    // $user = User::find(4);
+    // $user->name = "ALia Bhatt";    
+    // $user->posts[0]->title = 'Trump has left whitehouse';
+    // $user->posts[0]->comments[0]->brief = 'Biden take charge';
+    // $user->push();
+
+    // $post = Post::find(4);
+    // $post->user()->associate(User::find(4));
+    // $post->save();
+
+    // $user = User::find(1);
+    // $user->roles()->attach(2);
+    // $user->roles()->attach(2, ['priority' => 2]);
+
+
+    // $user = User::find(1);
+    // $user->roles()->detach();
+
+    // $user = User::find(1);
+    // $user->roles()->attach([
+    //   2 => ['priority' => 4],
+    //   3 => ['priority' => 5],
+    // ]);
+
+    // $user = User::find(1);
+    // $user->roles()->sync([1, 3]);
+
+    // $user = User::find(1);
+    // $user->roles()->sync([2 => ['priority' => 5], 1]);
+
+    // $user = User::find(1);
+    // $user->roles()->syncWithoutDetaching([3]);
+
+    // $user = User::find(1);
+    // $user->roles()->updateExistingPivot(2, [
+    //   'priority' => 2,
+    // ]);
+
+
+    // $post = Post::find(8);
+    // $post->title = "Ind vs Aus";
+    // $post->save();
+
+    // $post = Post::find(8);
+    // $post->discription = "Author of germany";
+    // $post->save();
+
+    // return redirect('qbuilder');
+
+
+  }
+  public function gm(Request $request, $id, $message = "Are you OK?")
+  {
+    return "Hello User " . $id . " " . $message;
+  }
+  public function profile(Request $request, $username, $message = "Are you fine?")
+  {
+    return "Awesome " . $username . " " . $message;
+  }
+
+  public function messageMe(Request $request)
+  {
+    //        return redirect("gm/56/message/How-are-you");
+    if ($request->route()->named('msg')) {
+      return "correct";
+    } else {
+      return "Incorrect";
+    }
+    return redirect()->route('gm', ['id' => 56, 'message' => 'How the development works going on?']);
   }
 }
 

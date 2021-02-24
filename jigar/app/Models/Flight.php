@@ -43,7 +43,7 @@ class Flight extends Model
 
     protected $connection = 'testing';
 
-    protected $fillable = ['name'];
+    // protected $fillable = ['name'];
 
     // use Illuminate\Database\Eloquent\SoftDeletes;
     // use SoftDeletes;

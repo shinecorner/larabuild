@@ -42,6 +42,11 @@ class RouteServiceProvider extends ServiceProvider
 //            return Post::where('id', $value)->where('active', 1)->firstOrFail();
 //        });
 
+//        Route::resourceVerbs([
+//            'create' => 'crear',
+//            'edit' => 'editar',
+//        ]);
+
         $this->configureRateLimiting();
 
         $this->routes(function () {

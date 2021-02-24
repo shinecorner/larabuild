@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Color;
 use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Role;
@@ -21,6 +22,19 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class TestController extends Controller
 {
+    public function __invoke(){
+        return "Invoke directly without action name";
+    }
+    public function __construct()
+    {
+//        $this->middleware(function ($request, $next) {
+//            exit("come here");
+////            return $next($request);
+//        })->only('relation');
+//        $this->middleware('chk:superadmin,delete');
+//        $this->middleware('chk');
+//        $this->middleware('chk')->only('relation');
+    }
     public function qbuilder(Request $request){
 
         return "this is qbuilder";
@@ -467,6 +481,7 @@ class TestController extends Controller
                 // $flight = Flight::where('number', '>', 100000)->firstOrFail();
         }
         public function relation(){
+        dd("controller");
 //            $user = User::find(3);
 //            return $user->phone;
 
@@ -727,7 +742,7 @@ class TestController extends Controller
 //            $post = Post::find(14);
 //            $post->description = "Author of germany";
 //            $post->save();
-            dd("kkk");
+            dump("kkk");
 //            return redirect('qbuilder');
         }
         public function gm(Request $request, $id, $message = "Are you OK?"){
@@ -745,5 +760,9 @@ class TestController extends Controller
             return "Incorrect";
         }
         return redirect()->route('gm',['id' => 56, 'message' => 'How the development works going on?']);
+    }
+    public function checkDI(Request $request, Color $color){
+        dd($color);
+        return "Hello";
     }
 }

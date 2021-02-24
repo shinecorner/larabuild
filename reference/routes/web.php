@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\PhoneController;
 use App\Models\Flight;
 use Illuminate\Http\Request;
 
@@ -34,6 +36,7 @@ use Illuminate\Http\Request;
     Route::get('qbuilder', [TestController::class, 'qbuilder'])->name('test.qbuilder');
     Route::get('eloquent', [TestController::class, 'eloquent'])->name('test.eloquent');
     Route::get('relation', [TestController::class, 'relation'])->name('test.relation');
+    Route::get('di', [TestController::class, 'checkDI'])->name('test.di');
     Route::get('/api/flights/{id}', function ($id) {
         return Flight::findOrFail($id);
     });
@@ -70,6 +73,19 @@ use Illuminate\Http\Request;
     Route::fallback(function () {
         return "already here";
     });
+Route::get('/server', TestController::class);
 
 //});
 
+//Route::resource('colors', ColorController::class)->except([
+//   'show'
+//]);
+Route::resource('phone', PhoneController::class);
+//Route::resource('user.phone', PhoneController::class);
+//Route::resource('user.phone', PhoneController::class)->parameters([
+//    'user' => 'admin_user'
+//]);
+//Route::resource('user.phone', PhoneController::class)->scoped([
+//    'phone' => 'slug'
+//]);
+//Route::resource('user.phone', PhoneController::class)->shallow();

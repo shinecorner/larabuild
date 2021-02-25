@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
     public function list(Request $request){
+//        if ($request->is('post/insert')) {
+//            exit("here");
+//        }
+//        if ($request->routeIs('post.*')) {
+//            exit("here");
+//        }
+
+//        dd($method = $request->method());
+
+
+
         $posts = DB::table('posts')->get();
 //        print_r($posts);
 //        exit;

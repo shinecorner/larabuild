@@ -765,4 +765,23 @@ class TestController extends Controller
         dd($color);
         return "Hello";
     }
+    public function checkReq(Request $request, $id){
+//        echo $request->path();
+//        echo $request->url();
+//        echo $request->fullUrl();
+//        dd($value = $request->header('X-Language'));
+//        dd($value = $request->header('X-Personname', 'jigar'));
+//        dd($token = $request->bearerToken());
+//        dd($contentTypes = $request->getAcceptableContentTypes());
+//        if ($request->accepts(['text/html', 'application/json'])) {
+//            exit("true");
+//        }
+//        dd($preferred = $request->prefers(['text/html', 'application/json']));
+//        if ($request->expectsJson()) {
+//            dd("true");
+//        }
+//        dd($request->input('name'));
+//        dd($name = $request->input('products.1.name'));
+//        dd($name = $request->input('products.*.name'));
+    }
 }

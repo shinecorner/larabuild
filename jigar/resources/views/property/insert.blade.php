@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<form method="post" action="{{url('property/store')}}">
+<form method="post" action="{{url('property/store')}}" enctype="multipart/form-data">
     @csrf
     <div class="container">
         <div class="form-group">
@@ -13,10 +13,14 @@
             </select>
 {{--            {{Form::select('type', ['flat' => 'Flat', 'shop' => 'Shop', 'office' => 'Office' , 'class' => 'form-control','id' => 'type'])}}--}}
         </div>
+        <div class="form-group">
+            <label for="slug">Slug</label>
+            <input type="text" value="{{old('slug')}}" class="form-control" id="slug" name="slug" placeholder="Enter slug">
+        </div>
 
         <div class="form-group">
             <label for="sq_feet">Square Feet:</label>
-            <input type="text" name="sq_feet" id="sq_feet" class="form-control" placeholder="Enter Square Feet">
+            <input type="text" name="sq_feet" value="{{old('sq_feet')}}" id="sq_feet" class="form-control" placeholder="Enter Square Feet">
 
         </div>
 
@@ -42,7 +46,12 @@
 
         <div class="form-group">
             <label for="evidance_date"> Evidance Date:</label>
-            <input type="date" name="evidance_date" class="form-control" id="evidance_date">
+            <input type="date" name="evidance_date" class="form-control" value="{{old('evidance_date')}}" id="evidance_date">
+        </div>
+
+        <div class="form-group">
+            <label for="slug">Image</label>
+            <input type="file" class="form-control" id="image" name="image" />
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
 </form>

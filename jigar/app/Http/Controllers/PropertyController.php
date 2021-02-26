@@ -9,6 +9,13 @@ class PropertyController extends Controller
 {
     public function list(Request $request)
     {
+//        if ($request->is('property/list')) {
+//            exit("here");
+//        }
+//        if ($request->routeIs('property.*')) {
+//            exit("here here");
+//        }
+//        dd($method = $request->method());
         $records = Property::all();
         return view('property.list', compact('records'));
     }
@@ -41,7 +48,7 @@ class PropertyController extends Controller
 
         return redirect('property/list');
     }
-    
+
     public function delete(Request $request, Property $property)
     {
         $property->delete();

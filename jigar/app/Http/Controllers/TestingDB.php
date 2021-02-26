@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Property;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Flight;
@@ -14,6 +15,7 @@ use App\Models\Image;
 use App\Models\Video;
 use App\Models\Tag;
 use App\Models\Contact;
+use App\Models\Color;
 use App\Models\ActivityFeed;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,9 +24,23 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 class TestingDB extends Controller
 {
   //
+    public function __invoke()
+    {
+     return "directly wihtout actin namer";
+    }
+    public function __construct(){
+//        $this->middleware(function ($request, $next) {
+//            exit("come here");
+////            return $next($request);
+//        });
+
+//        $this->middleware('chk');
+//        $this->middleware('chk')->only('qbuilder');
+//                $this->middleware('chk')->except('qbuilder');
+    }
   public function qbuilder()
   {
-    // return "this is redirect";
+     return "this is redirect";
 
     //   $users =  DB::connection('testing')->table('users')->where('name','jigar')->get();
     //   dd($users);
@@ -86,7 +102,7 @@ class TestingDB extends Controller
 
 
     // $users = DB::connection('testing')->table('users')->select('name','email')->get();
-    // return $users; 
+    // return $users;
 
     // return DB::connection('testing')->table('users')->distinct()->get();
 
@@ -97,7 +113,7 @@ class TestingDB extends Controller
     // return $users;
 
     // return DB::connection('testing')->table('order')->select(DB::raw('count(*) as user_count,price'))
-    //                                 ->where('price','>','2300') 
+    //                                 ->where('price','>','2300')
     //                                 ->groupby('transaction_num')
     //                                 ->get();
 
@@ -340,7 +356,7 @@ class TestingDB extends Controller
     // $flights = Flight::where('destination','Mumbai')->get();
 
     // $flights = $flights->reject(function ($flight) {
-    //   return $flight->cancelled;   
+    //   return $flight->cancelled;
     // });
 
     // Flight::chunk(3,function($flights){
@@ -449,7 +465,7 @@ class TestingDB extends Controller
     // $flight->fill(['name' => 'Amsterdam to Frankfurt']);
 
     //   Flight::upsert([
-    //     ['departure' => 'Ahmedabad', 'destination' => 'Mumbai', 'price' => 2500],        
+    //     ['departure' => 'Ahmedabad', 'destination' => 'Mumbai', 'price' => 2500],
     // ], ['departure', 'destination'], ['price']);
 
 
@@ -734,7 +750,7 @@ class TestingDB extends Controller
 
 
     // $user = User::find(4);
-    // $user->name = "ALia Bhatt";    
+    // $user->name = "ALia Bhatt";
     // $user->posts[0]->title = 'Trump has left whitehouse';
     // $user->posts[0]->comments[0]->brief = 'Biden take charge';
     // $user->push();
@@ -786,6 +802,7 @@ class TestingDB extends Controller
   }
   public function gm(Request $request, $id, $message = "Are you OK?")
   {
+
     return "Hello User " . $id . " " . $message;
   }
   public function profile(Request $request, $username, $message = "Are you fine?")
@@ -802,6 +819,40 @@ class TestingDB extends Controller
       return "Incorrect";
     }
     return redirect()->route('gm', ['id' => 56, 'message' => 'How the development works going on?']);
+  }
+  public  function  checkDI(Request $request, Color $color){
+      dd($color);
+//      return "hello";
+
+      // pass in attributes , original
+
+  }
+  public function checkReq(Request $request,$id, Property $property){
+//        echo $request->path();
+//      echo $request->url();
+//      echo $request->fullUrl();
+
+//      dd($value = $request->header('X-Language');
+
+//      dd($value = $request->header('X-Personname', 'jigar'));
+//      dd($token = $request->bearerToken());
+
+
+
+//      dd($request->getAcceptableContentTypes());
+
+//      if ($request->accepts(['text/html', 'application/json'])) {
+//            dd("true");
+//        }
+//      dd($preferred = $request->prefers(['text/html', 'application/json']));
+//      if ($request->expectsJson()) {
+//            dd("true");
+//        }
+//      dd($request->query('name', 'dragon'));  //like get method
+//      dd($ipAddress = $request->ip());
+//      dd($request->input('name'));
+//      dd($name = $request->input('products.1.name'));
+//      dd($name = $request->input('products.*.name'));
   }
 }
 

@@ -42,8 +42,13 @@ class RouteServiceProvider extends ServiceProvider
         // Route::bind('property', function ($value) {
         //     return Property::where('id', $value)->where('is_sold', 1)->firstOrFail();
         // });
+//        Route::resourceVerbs([
+//            'create' => 'crear',
+//            'edit' => 'editar',
+//        ]);
 
-        $this->configureRateLimiting();
+
+            $this->configureRateLimiting();
 
         $this->routes(function () {
             Route::prefix('api')

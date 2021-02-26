@@ -7,6 +7,8 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TestingDB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\PhoneController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 /*
@@ -62,10 +64,44 @@ Route::delete('/contacts/delete/{id}', [ContactController::class, 'delete'])->na
 Route::get('qbuilder', [TestingDB::class, 'qbuilder']);
 Route::get('eloquent', [TestingDB::class, 'eloquent']);
 Route::get('relation', [TestingDB::class, 'relation']);
+Route::get('/server', TestingDB::class);
+Route::get('di', [TestingDB::class, 'checkDI'])->name('test.di');
+Route::get('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq');
+//Route::resource('colors', ColorController::class)->except([
+//    'show'
+//]);
+
+//Route::resource('colors', ColorController::class);
+//Route::apiResource('colors', ColorController::class);
 
 // Route::fallback(function () {
 //     return "Your route is not found";
 // });
+
+
+
+
+
+
+//Route::resource('user.phone', PhoneController::class);
+
+//Route::resource('user.phone', PhoneController::class)->shallow();
+
+//Route::resource('user.phone', PhoneController::class)->parameters([
+//    'user' => 'admin_user'
+//]);
+
+//Route::resource('user.phone', PhoneController::class)->scoped([
+//    'phone' => 'slug'
+//]);
+
+
+
+
+
+
+
+
 
 // Route::get('gm', [TestingDB::class, 'gm']);
 // Route::get('/greeting', function () {

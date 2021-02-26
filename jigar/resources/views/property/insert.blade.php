@@ -11,7 +11,7 @@
                 <option value="office">Office</option>
 
             </select>
-            {{Form::select('type', ['flat' => 'Flat', 'shop' => 'Shop', 'office' => 'Office' , 'class' => 'form-control','id' => 'type'])}}
+{{--            {{Form::select('type', ['flat' => 'Flat', 'shop' => 'Shop', 'office' => 'Office' , 'class' => 'form-control','id' => 'type'])}}--}}
         </div>
 
         <div class="form-group">

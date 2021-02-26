@@ -18,7 +18,8 @@ class CheckMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // echo "Check specific line middleware";
+         echo "Check specific line middleware";
+         echo "<br>";
         // echo Route::currentRouteName();
         echo Route::currentRouteAction();
         return $next($request);

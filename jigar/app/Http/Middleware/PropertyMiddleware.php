@@ -17,6 +17,7 @@ class PropertyMiddleware
     public function handle(Request $request, Closure $next)
     {
         echo "Property specific line print";
+        echo "<br>";
         return $next($request);
     }
 }

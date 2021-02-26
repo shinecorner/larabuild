@@ -37,6 +37,8 @@ use Illuminate\Http\Request;
     Route::get('eloquent', [TestController::class, 'eloquent'])->name('test.eloquent');
     Route::get('relation', [TestController::class, 'relation'])->name('test.relation');
     Route::get('di', [TestController::class, 'checkDI'])->name('test.di');
+    Route::get('set-cookie', [TestController::class, 'setCookie'])->name('test.setCookie');
+    Route::get('get-cookie', [TestController::class, 'getCookie'])->name('test.getCookie');
 
     Route::get('/api/flights/{id}', function ($id) {
         return Flight::findOrFail($id);

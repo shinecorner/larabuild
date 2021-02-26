@@ -1,14 +1,24 @@
 @extends('layout')
 @section('content')
-<form method="post" action="{{url('post/store')}}">
+<form method="post" action="{{url('post/store')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+        <input type="text" value="{{old('title')}}" class="form-control" id="title" name="title" placeholder="Enter title">
+    </div>
+    <div class="form-group">
+        <label for="slug">Slug</label>
+        <input type="text" value="{{old('slug')}}" class="form-control" id="slug" name="slug" placeholder="Enter slug">
+    </div>
+    <div class="form-group">
+        <label for="slug">Image</label>
+        <input type="file" class="form-control" id="image" name="image" />
     </div>
     <div class="form-group">
         <label for="description">description</label>
-        <textarea class="form-control" id="description" name="description" placeholder="description"></textarea>
+        <textarea class="form-control" id="description" name="description" placeholder="description">
+            {{old('description')}}
+        </textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

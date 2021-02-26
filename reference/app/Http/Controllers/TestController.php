@@ -783,5 +783,46 @@ class TestController extends Controller
 //        dd($request->input('name'));
 //        dd($name = $request->input('products.1.name'));
 //        dd($name = $request->input('products.*.name'));
+
+//        dd($request->boolean('is_active'));
+//        dd($request->name);
+//        dd($input = $request->except(["is_agree"]));
+
+//        if ($request->has('name')) {
+//            exit("Yes");
+//        }
+
+//        $prefix = 'AP-';
+//        $name = $request->whenHas('name', function ($input) use($prefix){
+//            return $prefix . $input;
+//        });
+//        echo $name;
+
+//        dd($request->all());
+//        if ($request->filled('is_agree')) {
+//            exit("Filled");
+//        }
+
+//        $prefix = 'AP-';
+//        $name = $request->whenFilled('name', function ($input) use($prefix){
+//            return $prefix . $input;
+//        });
+//        echo $name;
+
+//        if ($request->missing('surname')) {
+//            exit("yy");
+//        }
+
+    }
+    public function jsonReq(Request $request){
+        dd($request->input('user.name'));
+    }
+    public function setCookie(Request $request){
+        return response('Hello World')->cookie(
+            'name', 'kamal', 3
+        );
+    }
+    public function getCookie(Request $request){
+        return $request->cookie('name');
     }
 }

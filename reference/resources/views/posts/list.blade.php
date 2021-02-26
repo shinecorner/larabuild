@@ -8,10 +8,12 @@
 @section('content')
     <table class="table table-striped">
         <thead>
+        {{session('title')}}
         <tr>
             <th>ID</th>
             <th>Title</th>
             <th>Description</th>
+            <th>File</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -21,6 +23,11 @@
                 <td> {{ $record->id }} </td>
                 <td> {{ $record->title }} </td>
                 <td> {{ $record->description }} </td>
+                <td>
+                    @if($record->image)
+                        <img src="{{ $record->image }}" height="100" />
+                    @endif
+                </td>
                 <td>
                     <a href="{{route('post.edit',['post' => $record->id])}}" class="btn btn-primary">Edit</a>
                     <form action="{{ route('post.delete',['id' => $record->id]) }}" method="post">

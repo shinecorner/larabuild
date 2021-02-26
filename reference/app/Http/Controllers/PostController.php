@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
     public function list(Request $request){
+
+        dump($request->all());
 //        if ($request->is('post/insert')) {
 //            exit("here");
 //        }
@@ -29,12 +31,31 @@ class PostController extends Controller
         return view('posts.insert');
     }
     public function store(Request $request){
+        $file = $request->file('image');
+
+//        echo $path = $request->image->path();
+//        echo '<br>';
+//        echo $extension = $request->image->extension();
+//        exit;
+        $destinationPath = public_path('uploads');
+        $isUpload = $file->move($destinationPath,$file->getClientOriginalName());
+//        $isUpload = $request->image->storeAs('images', $file->getClientOriginalName(), 'public');
 //        $request->all();
 //        echo $request->get('title');exit;
-        DB::table('posts')->insert([
-            'title' => $request->get('title'),
-            'description' => $request->get('description')
-        ]);
+//        $validated = $request->validate([
+//            'title' => 'required|max:255',
+//            'description' => 'required',
+//        ]);
+//        $request->flash();
+        if($isUpload){
+            DB::table('posts')->insert([
+                'title' => $request->get('title'),
+                'description' => $request->get('description'),
+                'slug' => $request->get('slug'),
+                'image' => '/uploads/' . $file->getClientOriginalName()
+            ]);
+        }
+
         return redirect('post/list');
     }
     public function edit(Request $request, Post $post){

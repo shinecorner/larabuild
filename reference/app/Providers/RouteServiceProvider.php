@@ -73,7 +73,7 @@ class RouteServiceProvider extends ServiceProvider
         });
         RateLimiter::for('postratelimit', function (Request $request) {
 //            return Limit::perMinute(3);
-            return Limit::perMinute(5)->response(function () {
+            return Limit::perMinute(25)->response(function () {
                 return response('Aatli badhi vakhat refresh na karo bhai', 429);
             });
         });

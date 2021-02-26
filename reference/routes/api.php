@@ -23,3 +23,4 @@ Route::apiResource('colors', ColorController::class)->except([
     'show'
 ]);
 Route::post('check-req/{id}', [TestController::class, 'checkReq'])->name('test.chkReq');
+Route::get('json-req', [TestController::class, 'jsonReq'])->name('test.jsonReq');

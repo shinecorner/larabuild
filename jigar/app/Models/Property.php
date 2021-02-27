@@ -20,4 +20,8 @@ class Property extends Model
 //    {
 //        return $this->where('id', $value)->where('is_sold', 1)->firstOrFail();
 //    }
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
 }

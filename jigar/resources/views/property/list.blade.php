@@ -9,6 +9,13 @@
 @endpush
 
 @push('custom-scripts')
+@section('content')
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+
     <script src="{{asset('vendor/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('vendor/dataTables.bootstrap4.min.js')}}"></script>
     <script type="text/javascript">

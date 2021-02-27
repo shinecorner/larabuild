@@ -11,6 +11,10 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PhoneController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Property;
+use Illuminate\Support\Facades\Http;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,8 +45,8 @@ Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('cu
 Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
 Route::delete('/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
 
-Route::middleware(['propertytest','throttle:propertyratelimit'])->prefix('property')->name('property.')->group(function () {
-    Route::get('list', [PropertyController::class, 'list']);
+Route::middleware(['propertytest', 'throttle:propertyratelimit'])->prefix('property')->name('property.')->group(function () {
+    Route::get('list', [PropertyController::class, 'list'])->name('list');
     Route::get('insert', [PropertyController::class, 'insert'])->name('insert');
     Route::post('store', [PropertyController::class, 'store'])->name('store');
     Route::get('edit/{property}', [PropertyController::class, 'edit'])->name('edit')->missing(function (Request $request) {
@@ -68,7 +72,112 @@ Route::get('/server', TestingDB::class);
 Route::get('di', [TestingDB::class, 'checkDI'])->name('test.di');
 //Route::get('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq');
 Route::get('set-cookie', [TestingDB::class, 'setCookie'])->name('test.setCookie');
-Route::get('get-cookie', [TestingDB::class, 'getCookie'])->name('test.getCookie');
+//Route::get('get-cookie', [TestingDB::class, 'getCookie'])->name('test.getCookie');
+
+Route::get('/test-json', function () {
+    return [1, 2, 3];
+});
+Route::get('/test-resp', function () {
+//        return response('Hello World<br>how are you', 200)
+//        ->header('Content-Type', 'text/html');
+//    return redirect('/test-json');
+
+    return response("Hello world")
+        ->header('Content-Type', "text/html")
+        ->header('X-Country', 'India')
+        ->header('X-State', 'Kerala');
+
+});
+Route::get('/user/{user}', function (User $user) {
+    return $user;
+    //Pass user = id//
+});
+
+Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {
+    Route::get('/privacy', function () {
+        return response("Privacy12")->withoutCookie('surname');
+    });
+
+    Route::get('/terms', function () {
+        return "Terms & Condition";
+    });
+});
+
+Route::get('cookie-action', [TestingDB::class, 'setCookie'])->name('test.getCookie');
+
+//Route::get('set-cookie', function (){
+//    return response('Hello World')->cookie(
+//        'surname', 'Kariya',0.5
+//    );
+//})->name('test.setCookie');
+
+Route::get('ext',function (){
+//    return redirect()->away('https://www.google.com');
+        return redirect()->route('property.list')->with('message', 'List executed');
+})->name('ext');
+
+
+
+
+
+Route::get('/get-user-by-id/{id}', function (Request $request, $id) {
+    return $id;
+})->name('get-user');
+
+Route::get('/check-user', function () {
+//    $user = User::find(2);
+//    return redirect()->route('get-user', [$user]);
+});
+
+
+
+
+
+//include Property model in getRouteKey method
+Route::get('/get-property/{id}', function (Request $request, $id) {
+    return $id;
+})->name('get-property');
+
+Route::get('/check-property', function () {
+    $property = Property::find(9);
+    return redirect()->route('get-property', [$property]);
+//    return redirect()->action([TestDB::class, 'qbuilder']);
+});
+
+
+
+
+//Route::get('chk-json', function (){
+//    return response()->json([
+//        'name' => 'jigar',
+//        'state' => 'gujrat',
+//    ]);
+//});
+
+//Route::get('file-download', function (){
+//    return response()->download(public_path('uploads/ghost.jpeg'));
+//});
+
+
+
+Route::get('stream-download', function (){
+    return response()->streamDownload(function () {
+        $res = Http::get('http://www.shinecorner.com/');
+        echo $res;
+    }, 'temp.html');
+});
+
+
+Route::get('file-show', function (){
+    return response()->file(public_path('uploads/ghost.jpeg'));
+});
+
+Route::get('chk-mecro', function (){
+        return response()->caps('my laptop');
+});
+//    return redirect()->route('get-user', ['id' => 2]);
+
+
 //Route::resource('colors', ColorController::class)->except([
 //    'show'
 //]);
@@ -79,10 +188,6 @@ Route::get('get-cookie', [TestingDB::class, 'getCookie'])->name('test.getCookie'
 // Route::fallback(function () {
 //     return "Your route is not found";
 // });
-
-
-
-
 
 
 //Route::resource('user.phone', PhoneController::class);
@@ -96,13 +201,6 @@ Route::get('get-cookie', [TestingDB::class, 'getCookie'])->name('test.getCookie'
 //Route::resource('user.phone', PhoneController::class)->scoped([
 //    'phone' => 'slug'
 //]);
-
-
-
-
-
-
-
 
 
 // Route::get('gm', [TestingDB::class, 'gm']);

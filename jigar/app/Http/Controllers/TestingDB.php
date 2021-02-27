@@ -20,6 +20,7 @@ use App\Models\ActivityFeed;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Facades\Cookie;
 
 class TestingDB extends Controller
 {
@@ -885,9 +886,13 @@ class TestingDB extends Controller
 
     public function setCookie(Request $request)
     {
-        return response('Hello World')->cookie(
-            'name', 'bhuva', 3
-        );
+        Cookie::queue('laptop', 'HP', 1);
+
+        //        Cookie::queue(Cookie::forget('laptop'));
+//        return response('Hello World')->cookie(
+//            'name', 'bhuva', 3
+//        );
+        return response('Hello World');
     }
 
     public function getCookie(Request $request)

@@ -18,7 +18,8 @@ use App\Http\Controllers\TestingDB;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-//Route::post('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq');
+Route::post('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq');
 //Route::apiResource('colors', ColorController::class)->except([
 //    'show'
 //]);
+Route::get('json-req', [TestingDB::class, 'jsonReq'])->name('test.jsonReq');

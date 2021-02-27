@@ -66,7 +66,9 @@ Route::get('eloquent', [TestingDB::class, 'eloquent']);
 Route::get('relation', [TestingDB::class, 'relation']);
 Route::get('/server', TestingDB::class);
 Route::get('di', [TestingDB::class, 'checkDI'])->name('test.di');
-Route::get('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq');
+//Route::get('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq');
+Route::get('set-cookie', [TestingDB::class, 'setCookie'])->name('test.setCookie');
+Route::get('get-cookie', [TestingDB::class, 'getCookie'])->name('test.getCookie');
 //Route::resource('colors', ColorController::class)->except([
 //    'show'
 //]);

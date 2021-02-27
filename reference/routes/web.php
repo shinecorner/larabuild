@@ -8,6 +8,8 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PhoneController;
 use App\Models\Flight;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +39,6 @@ use Illuminate\Http\Request;
     Route::get('eloquent', [TestController::class, 'eloquent'])->name('test.eloquent');
     Route::get('relation', [TestController::class, 'relation'])->name('test.relation');
     Route::get('di', [TestController::class, 'checkDI'])->name('test.di');
-    Route::get('set-cookie', [TestController::class, 'setCookie'])->name('test.setCookie');
-    Route::get('get-cookie', [TestController::class, 'getCookie'])->name('test.getCookie');
 
     Route::get('/api/flights/{id}', function ($id) {
         return Flight::findOrFail($id);
@@ -92,3 +92,77 @@ Route::resource('phone', PhoneController::class);
 //    'phone' => 'slug'
 //]);
 //Route::resource('user.phone', PhoneController::class)->shallow();
+Route::get('/test-json', function () {
+    return [1, 2, 3];
+});
+Route::get('/test-resp', function () {
+//    return response('Hello World<br>how are you', 200)
+//        ->header('Content-Type', 'text/plain');
+//    return redirect('/test-json');
+    return response("Hello world")
+        ->header('Content-Type', "text/html")
+        ->header('X-Country', 'India')
+        ->header('X-State', 'Gujarat');
+});
+Route::get('/user/{user}', function (User $user) {
+    return $user;
+});
+Route::get('/get-user-by-id/{id}', function (Request $request, $id) {
+    return $id;
+})->name('get-user');
+
+Route::get('/get-post/{id}', function (Request $request, $id) {
+    return $id;
+})->name('get-post');
+
+Route::get('/check-user', function () {
+//    $user = User::find(5);
+//    return redirect()->route('get-user', [$user]);
+
+//    return redirect()->route('get-user', ['id' => 3]);
+});
+
+Route::get('/check-post', function () {
+    $post = Post::find(26);
+    return redirect()->route('get-post', [$post]);
+//    return redirect()->action([TestController::class, 'qbuilder']);
+});
+
+Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {
+    Route::get('/privacy', function () {
+        return response("Privacy12")->withoutCookie('surname');
+    });
+
+    Route::get('/terms', function () {
+        return "Terms & Condition";
+    });
+});
+//Route::get('set-cookie', [TestController::class, 'setCookie'])->name('test.setCookie');
+//Route::get('get-cookie', [TestController::class, 'getCookie'])->name('test.getCookie');
+
+Route::get('set-cookie', function (){
+//    return response('Hello World')->cookie(
+//        'surname', 'value', 0.5
+//    );
+    return response('Hello World')->cookie(
+        'surname', 'Kariya'
+    );
+})->name('test.setCookie');
+
+Route::get('cookie-action', [TestController::class, 'setCookie'])->name('test.getCookie');
+
+Route::get('ext', function (){
+    return redirect()->away('https://www.google.com');
+//    return redirect()->route('post.list')->with('message', 'List executed');
+})->name('ext');
+
+Route::get('chk-json', function (){
+//    return response()->json([
+//        'name' => 'Abigail',
+//        'state' => 'CA',
+//    ]);
+
+});
+Route::get('file-download', function (){
+    return response()->download(public_path('uploads/6.jpeg'), 'hp.jpeg');
+});

@@ -6,9 +6,13 @@
     <script src="{{asset('vendor/dataTables.bootstrap4.min.js')}}"></script>
 @endpush
 @section('content')
+    @if (session('message'))
+        <div class="alert alert-danger">
+            {{ session('message') }}
+        </div>
+    @endif
     <table class="table table-striped">
         <thead>
-        {{session('title')}}
         <tr>
             <th>ID</th>
             <th>Title</th>

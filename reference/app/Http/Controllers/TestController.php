@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Eloquent\Builder;
 //use Illuminate\Database\Query\Builder as QBuilder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Support\Facades\Cookie;
 
 class TestController extends Controller
 {
@@ -818,9 +819,9 @@ class TestController extends Controller
         dd($request->input('user.name'));
     }
     public function setCookie(Request $request){
-        return response('Hello World')->cookie(
-            'name', 'kamal', 3
-        );
+        Cookie::queue('laptop', 'HP', 1);
+//        Cookie::queue(Cookie::forget('laptop'));
+        return response('Hello World');
     }
     public function getCookie(Request $request){
         return $request->cookie('name');

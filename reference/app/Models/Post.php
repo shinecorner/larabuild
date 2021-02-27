@@ -59,4 +59,9 @@ class Post extends Model
     {
         return $this->morphMany(ActivityFeed::class, 'parentable');
     }
+    public function getRouteKey()
+    {
+        return $this->slug;
+    }
+
 }

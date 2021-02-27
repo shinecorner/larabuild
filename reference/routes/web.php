@@ -10,6 +10,7 @@ use App\Models\Flight;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Post;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -165,4 +166,20 @@ Route::get('chk-json', function (){
 });
 Route::get('file-download', function (){
     return response()->download(public_path('uploads/6.jpeg'), 'hp.jpeg');
+});
+
+Route::get('stream-download', function (){
+    return response()->streamDownload(function () {
+        $res = Http::get('http://example.com');
+        echo $res;
+    }, 'temp.html');
+});
+
+Route::get('file-show', function (){
+    return response()->file(public_path('uploads/6.jpeg'));
+});
+
+Route::get('chk-mecro', function (){
+//    return response('my laptop');
+    return response()->caps('my laptop');
 });

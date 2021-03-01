@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePropertyRequest;
+
 use App\Models\Property;
 
 class PropertyController extends Controller
@@ -25,8 +27,39 @@ class PropertyController extends Controller
         return view('property.insert');
     }
 
-    public function store(Request $request)
+    public function store(StorePropertyRequest $request)
     {
+//        $validated = $request->validate([
+////            'type' => 'required|unique:properties',
+//            'slug' => 'required|unique:properties',
+//            'sq_feet' => 'required',
+//            'direction' => 'required',
+//            'discription' => 'required',
+//            'is_sold' => 'required',
+//            'evidance_date' => 'required',
+//            'author.name' => 'required',
+//            'author.surname' => 'required',
+//            'v1\.0' => 'required',
+//            'publish_at' => 'nullable|date'
+//        ]);
+//$validatedData = $request->validateWithBag('property', [
+//            'type' => ['required', 'unique:properties'],
+//            'slug' => ['required', 'unique:properties'],
+//            'sq_feet' => ['required'],
+//            'direction' => ['required'],
+//            'discription' => ['required'],
+//            'is_sold' => ['required'],
+//            'evidance_date' => ['required'],
+//            'author.name' => ['required'],
+//            'author.surname' => ['required'],
+//            'author.surname' => ['required'],
+//            'v1\.0' => ['required'],
+//            'publish_at' => ['nullable', 'date'],
+//        ]);
+
+
+        $validated = $request->validated();
+
         $file = $request->file('image');
         $destinationPath = public_path('uploads');
         $isUpload = $file->move($destinationPath, $file->getClientOriginalName());

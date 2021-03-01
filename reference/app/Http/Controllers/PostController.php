@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,22 @@ class PostController extends Controller
     public function insert(){
         return view('posts.insert');
     }
-    public function store(Request $request){
+    public function store(StorePostRequest $request){
+        $validated = $request->validated();
+//        exit("111");
+//        print_r($request->all());
+//        exit;
+//        $validated = $request->validate([
+//            'title' => 'required|unique:posts|max:30',
+//            'description' => 'required',
+//        ]);
+//        $validatedData = $request->validateWithBag('post', [
+//            'title' => ['required', 'unique:posts', 'max:255'],
+//            'body' => ['required'],
+//        ]);
+
+//        $validated = $request->validate();
+
         $file = $request->file('image');
 
 //        echo $path = $request->image->path();
@@ -42,11 +58,6 @@ class PostController extends Controller
 //        $isUpload = $request->image->storeAs('images', $file->getClientOriginalName(), 'public');
 //        $request->all();
 //        echo $request->get('title');exit;
-//        $validated = $request->validate([
-//            'title' => 'required|max:255',
-//            'description' => 'required',
-//        ]);
-//        $request->flash();
         if($isUpload){
             DB::table('posts')->insert([
                 'title' => $request->get('title'),

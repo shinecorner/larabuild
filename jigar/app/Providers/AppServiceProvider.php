@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Color;
+use Illuminate\Support\Facades\Response;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,5 +30,9 @@ class AppServiceProvider extends ServiceProvider
             return Color::find(3);
         });
         Schema::defaultStringLength(191);
+
+        Response::macro('caps', function ($value) {
+            return Response::make(strtoupper($value));
+        });
     }
 }

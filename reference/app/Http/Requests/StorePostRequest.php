@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StorePostRequest extends FormRequest
 {
@@ -25,6 +26,7 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title' => 'required|unique:posts|max:3',
+            'slug' => 'required|unique:posts',
             'description' => 'required',
             'author.name' => 'required',
             'author.surname' => 'required',
@@ -35,7 +37,7 @@ class StorePostRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Title enter karo bhai',
+//            'title.required' => 'Title enter karo bhai',
             'title.unique' => 'Aavu title aavi gayu chhe already',
             'description.required' => 'A message is required',
         ];
@@ -45,5 +47,17 @@ class StorePostRequest extends FormRequest
         $validator->after(function ($validator) {
             $validator->errors()->add('description', 'Something is wrong with this field!');
         });
+    }
+    public function attributes()
+    {
+        return [
+            'title' => 'Post title',
+        ];
+    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->slug),
+        ]);
     }
 }

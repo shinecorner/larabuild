@@ -6,6 +6,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -31,8 +32,60 @@ class PostController extends Controller
     public function insert(){
         return view('posts.insert');
     }
-    public function store(StorePostRequest $request){
-        $validated = $request->validated();
+    public function store(Request $request){
+//        $validator = Validator::make($request->all(), [
+//            'title' => 'required|unique:posts|min:4',
+//            'description' => 'required',
+//            'author.name' => 'required',
+//            'author.surname' => 'required',
+//        ], [
+//            'required' => 'The :attribute field is Mandatory.',
+//        ]);
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|unique:posts|min:4',
+            'description' => 'required_if:active,1',
+            'password' => 'nullable|confirmed',
+            'password_confirmation' => 'nullable',
+            'author.name' => 'required',
+            'author.surname' => 'required',
+        ]);
+        if($validator->fails()){
+//            $errors = $validator->errors();
+//            foreach ($errors->get('title') as $message) {
+//                dump($message);
+//            }
+//            foreach ($errors->get('author.*') as $message) {
+//                dump($message);
+//            }
+//            foreach ($errors->all() as $message) {
+//                dump($message);
+//            }
+//            if ($errors->has('title')) {
+//                exit("title khotu chhe");
+//            }
+//            exit;
+//            dd($errors->first('title'));
+//            dd($errors);
+            return redirect('post/insert')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+//        Validator::make($request->all(), [
+//            'title' => 'required|unique:posts|max:255',
+//            'description' => 'required',
+//        ])->validateWithBag('post');
+//        $validator = Validator::make($request->all(), [
+//            'title' => 'required|unique:posts|max:255',
+//            'description' => 'required',
+//        ]);
+//
+//        if ($validator->fails()) {
+//            return redirect('post/insert')
+//                ->withErrors($validator)
+//                ->withInput();
+//        }
+//        $validated = $request->validated();
 //        exit("111");
 //        print_r($request->all());
 //        exit;

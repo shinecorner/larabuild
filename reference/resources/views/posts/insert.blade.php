@@ -50,7 +50,24 @@
                         @error('title')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        {{--                            <div class="alert alert-danger">{{ $errors->post->first('title') }}</div>--}}
                     </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" value="{{old('password')}}" class="form-control" id="password" name="password"
+                               placeholder="Enter password">
+                    </div>
+                    @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirm Password</label>
+                        <input type="password" value="{{old('password_confirmation')}}" class="form-control" id="password_confirmation" name="password_confirmation"
+                               placeholder="Confirm password">
+                    </div>
+                    @error('password_confirmation')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <div class="form-group">
                         <label for="slug">Slug</label>
                         <input type="text" value="{{old('slug')}}" class="form-control" id="slug" name="slug"
@@ -84,6 +101,10 @@
                     <div class="form-group">
                         <label for="publish_at">Publish at</label>
                         <input type="text" class="form-control" id="publish_at" name="publish_at">
+                    </div>
+                    <div class="form-group">
+                        <label for="active"></label>
+                        <input type="checkbox" value="1" class="form-check-input" id="active" name="active">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
 {{--                    <button type="button" id="submit_form" class="btn btn-primary">Submit</button>--}}

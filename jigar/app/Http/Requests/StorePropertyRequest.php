@@ -3,7 +3,14 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Support\Str;
+//after_date
+//between
+//dimensions
+//distincts
+//ends_with
+//Specifying A Custom Column Name
+//in:foo,bar,...mimetypes:text/plain,...//
 class StorePropertyRequest extends FormRequest
 {
     /**
@@ -50,5 +57,17 @@ class StorePropertyRequest extends FormRequest
         $validator->after(function ($validator) {
             $validator->errors()->add('sq_feet', 'Something is wrong with this field!');
         });
+    }
+    public function attributes()
+    {
+        return [
+          'type' => 'Property Type',
+        ];
+    }
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::slug($this->slug),
+        ]);
     }
 }

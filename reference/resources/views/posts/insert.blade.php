@@ -53,6 +53,20 @@
                         {{--                            <div class="alert alert-danger">{{ $errors->post->first('title') }}</div>--}}
                     </div>
                     <div class="form-group">
+                        <label for="title">Age</label>
+                        <input type="text" value="{{old('age')}}" class="form-control" id="age" name="age" placeholder="Enter Age">
+                        @error('age')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" value="{{old('email')}}" class="form-control" id="email" name="email" placeholder="Enter Email">
+                        @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" value="{{old('password')}}" class="form-control" id="password" name="password"
                                placeholder="Enter password">
@@ -82,6 +96,16 @@
                         <textarea class="form-control" id="description" name="description" placeholder="description">
             {{old('description')}}
         </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Book</label>
+                        <input type="text" class="form-control" id="book_0" name="book[]" maxlength="30"
+                               placeholder="Enter Book Name">
+                        <input type="text" class="form-control" id="book_0" name="book[]" maxlength="30"
+                               placeholder="Enter Book Name">
+
+                        <input type="text" class="form-control" id="book_0" name="book[]" maxlength="30"
+                               placeholder="Enter Book Name">
                     </div>
                     <div class="form-group">
                         <label for="author_name">Author Name</label>

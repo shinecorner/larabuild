@@ -7,6 +7,8 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\Uppercase;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -33,22 +35,55 @@ class PostController extends Controller
         return view('posts.insert');
     }
     public function store(Request $request){
-//        $validator = Validator::make($request->all(), [
-//            'title' => 'required|unique:posts|min:4',
-//            'description' => 'required',
-//            'author.name' => 'required',
-//            'author.surname' => 'required',
-//        ], [
-//            'required' => 'The :attribute field is Mandatory.',
-//        ]);
+//        print_r($request->all());exit;
         $validator = Validator::make($request->all(), [
-            'title' => 'required|unique:posts|min:4',
-            'description' => 'required_if:active,1',
-            'password' => 'nullable|confirmed',
-            'password_confirmation' => 'nullable',
+//            'title' => 'required|unique:posts|min:4',
+//            'title' =>  ['required', 'unique:posts', 'min:4', new Uppercase],
+//            'title' =>  ['required', 'unique:posts', 'min:4',
+//                function ($attribute, $value, $fail) {
+//                    if (!(strtoupper($value) === $value)) {
+//                        $fail('The '.$attribute.' is invalid.');
+//                    }
+//                },
+//            ],
+//            'title' => 'required|exists:posts',
+            'title' =>  [
+                'required',
+                Rule::exists('posts')->where(function ($query) {
+                    return $query->where('active', 1);
+                }),
+            ],
+            'email' => 'email|in:a@a.com, b@b.com',
+//            'slug' => 'same:title',
+//            'image' => 'dimensions:min_width=100,min_height=200',
+//            'image' => 'mimetypes:video/avi,video/mpeg,video/quicktime',
+            'image' => 'mimes:jpg,bmp,png',
+            'slug' => 'different:title',
+            'book' => 'array',
+//            'age' => 'numeric|between:18,120',
+            'age' => 'numeric|multiple_of:5',
+            'publish_at' => 'date_equals:10 March 2021|date_format:Y-m-d',
+//            'publish_at' => 'date_format:Y-m-d',
+            'description' => 'required',
             'author.name' => 'required',
             'author.surname' => 'required',
+            'author.*' => 'distinct:ignore_case',
+            'active' => [
+                'sometimes',
+                'required',
+                Rule::in(['1']),
+            ],
+        ], [
+            'required' => 'The :attribute field is Mandatory.',
         ]);
+//        $validator = Validator::make($request->all(), [
+//            'title' => 'required|unique:posts|min:4',
+//            'description' => 'required_if:active,1',
+//            'password' => 'nullable|confirmed',
+//            'password_confirmation' => 'nullable',
+//            'author.name' => 'required',
+//            'author.surname' => 'required',
+//        ]);
         if($validator->fails()){
 //            $errors = $validator->errors();
 //            foreach ($errors->get('title') as $message) {

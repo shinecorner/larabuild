@@ -134,6 +134,13 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'type' => [
+            'required' => ' :attribute We need to know your type!',
+        ],
+        'discription' => [
+            'required_if' => ':attribute field is required when :other is :value.'
+        ],
+
     ],
 
     /*
@@ -147,6 +154,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'type' => 'Of Property Type',
+        'mail' => 'mail:xyz@domain.com'
 
+    ],
+    'values' => [
+        'active' => [
+            '1' => 'On'
+        ],
+    ],
 ];

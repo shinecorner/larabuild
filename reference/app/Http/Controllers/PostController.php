@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\Uppercase;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\View;
 
 class PostController extends Controller
 {
@@ -161,7 +162,9 @@ class PostController extends Controller
 //        $post = Post::find($id);
 //        $post = DB::table('posts')->find($id);
 //        $record = DB::table('posts')->where('id', $id)->get();
-        return view('posts.edit', ['record' => $post]);
+//        return view('posts.edit', ['record' => $post]);
+//        return View::first(['posts.edit', 'custom.postedit'], ['record' => $post]);
+        return view('posts.edit')->with('record',  $post);
     }
     public function update(Request $request, $id){
         DB::table('posts')

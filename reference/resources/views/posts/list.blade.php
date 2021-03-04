@@ -22,6 +22,9 @@
         </tr>
         </thead>
         <tbody>
+        {{$person_name}}
+        {{$usercount}}
+        {{$surname}}
         @foreach($records as $record)
             <tr>
                 <td> {{ $record->id }} </td>

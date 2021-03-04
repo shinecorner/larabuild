@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Models\Color;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,5 +36,10 @@ class AppServiceProvider extends ServiceProvider
         Response::macro('caps', function ($value) {
             return Response::make(strtoupper($value));
         });
+        View::share('person_name', 'jigar');
+
+        Blade::component('package-alert', Alert::class);
+
+        Blade::componentNamespace('Nightshade\\Views\\Components', 'nightshade');
     }
 }

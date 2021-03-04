@@ -6,6 +6,7 @@
     @include('includes.head')
     @stack('custom-styles')
     @stack('custom-scripts')
+{{--    @once('custom-scripts')--}}
 
 </head>
 
@@ -19,9 +20,9 @@
         </div>
         <footer class="row">
             @include('includes.footer')
-            
+
         </footer>
-        
+
     </div>
 </body>
 

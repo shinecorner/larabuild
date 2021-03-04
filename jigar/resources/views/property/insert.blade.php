@@ -92,7 +92,7 @@
             @enderror
             <div class="form-group">
                 <label for="age">Age</label>
-                <input type="text" value="{{old('age')}}" class="form-control" id="age" name="age"
+                <input type="text" value="{{old('age')}}" class="@error('age') is-invalid @enderror" id="age" name="age"
                        placeholder="Enter Age">
                 @error('age')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -230,7 +230,8 @@
             </div>
             <div class="form-group">
                 <label for="chk_json">Check Json</label>
-                <textarea class="form-control" name="chk_json" placeholder="Enter Your Json " id="chk_json" rows="3"></textarea>
+                <textarea class="form-control" name="chk_json" placeholder="Enter Your Json " id="chk_json"
+                          rows="3"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>

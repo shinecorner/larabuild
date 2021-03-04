@@ -25,7 +25,7 @@
             });
         });
     </script>
-@endpush
+    @endpush
 
 @section('content')
     <table class="table table-striped" id="property_list">
@@ -45,8 +45,19 @@
         </tr>
         </thead>
         <tbody>
+        {{$person_name}}
+        {!!  $surname !!}
+        {{$usercount}}
+
+        {{--        @@json()--}}
+        {{--        {{$i = null}}--}}
+
+
+
         @foreach($records as $record)
             <tr>
+
+
                 <td>{{$record->id}}</td>
                 <td>{{$record->type}}</td>
                 <td>{{$record->sq_feet}}</td>
@@ -75,5 +86,109 @@
         @endforeach
         </tbody>
     </table>
+
 @stop
 
+
+
+
+
+
+
+
+
+
+
+
+
+{{--                <td>--}}
+{{--                    @if (count($records) === 1)--}}
+{{--                        I have one record!--}}
+{{--                    @elseif (count($records) > 1)--}}
+{{--                        I have multiple records!--}}
+{{--                    @else--}}
+{{--                        I don't have any records!--}}
+{{--                    @endif--}}
+
+{{--                </td>--}}
+
+{{--@isset($records)--}}
+{{--@endisset--}}
+
+{{--@empty($records)--}}
+{{--@endempty--}}
+
+
+{{--@auth('admin')--}}
+{{--@endauth--}}
+
+{{--@guest('admin')--}}
+{{--@endguest--}}
+
+{{--@production--}}
+{{--@endproduction--}}
+
+{{--@env('staging')--}}
+{{--@endenv--}}
+
+{{--@env(['staging','production'])--}}
+{{--@endenv--}}
+
+
+{{--@hasSection('navigation')--}}
+{{--@endif()--}}
+
+
+{{--@sectionMissing()--}}
+{{--@endif--}}
+
+
+{{--@switch($i)--}}
+{{--    @case(1)--}}
+{{--    First case...--}}
+{{--    @break--}}
+
+{{--    @case(2)--}}
+{{--    Second case...--}}
+{{--    @break--}}
+
+{{--    @default--}}
+{{--    Default case...--}}
+{{--@endswitch--}}
+
+
+{{--@for($i = 0;$i < 10;$i++)--}}
+{{--    the current value is {{ nl2br(e($i)) }}--}}
+{{--@endfor--}}
+
+
+{{--{{$i = 5}}--}}
+{{--@while ($i > 4)--}}
+{{--    <p>I'm looping forever.</p>--}}
+{{--@endwhile--}}
+
+
+{{--@if ($loop->first)--}}
+{{--    This is the first iteration.--}}
+{{--@endif--}}
+
+{{--@if ($loop->last)--}}
+{{--    This is the last iteration.--}}
+{{--@endif--}}
+
+
+{{--@includeIf()--}}
+
+{{--@includeWhen()--}}
+
+{{--@includeUnless()--}}
+
+{{--@includeFirst(['custom.admin','admin'],['status' => 'complete'])--}}
+
+
+{{--@each('includes.head',$jobs,'job')--}}{{-- combine of foreach and include--}}
+
+{{--@php--}}
+{{--    $counter = 1;--}}
+{{--    echo $counter;--}}
+{{--@endphp--}}

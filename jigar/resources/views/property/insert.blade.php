@@ -1,6 +1,7 @@
 @extends('layout')
 
 @push('custom-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
         // $(function(){
         //     $('#submit_form').click(function (){
@@ -23,12 +24,17 @@
         //     });
         // })
     </script>
+
+    <script>
+        var detail = @json($detail);
+        console.log(detail.name);
+    </script>
 @endpush
 
 @section('content')
     <form method="post" action="{{url('property/store')}}" id="property_form" enctype="multipart/form-data">
         @csrf
-        <div class="container">
+        <div class="container" id="property_insert_section">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -38,6 +44,59 @@
                     </ul>
                 </div>
             @endif
+    <br>
+                @each('custom.finedisplay', $detail, 'd')
+
+                <br>
+
+            <br><br>
+
+{{--                @unless (count($detail) === 1)--}}
+{{--                    You are not signed in.--}}
+{{--                @endunless--}}
+                <br><br>
+
+            @forelse ($detail as $d)
+                <li>{{ $d }}</li>
+            @empty
+                <p>No detail</p>
+            @endforelse
+
+            <br><br>
+
+            @foreach ($detail as $d)
+                {{$d}}
+                @if (!$loop->last)
+                    {{","}}
+                @endif
+            @endforeach
+
+            <br><br><br>
+
+            @verbatim
+                Model, {{ name }}.
+                <br>
+                Company, {{ company }}.
+                <br>
+                Price, {{ price }}.
+            @endverbatim
+
+            <br><br>
+            @production
+                {{"Production mode on"}}
+            @endproduction
+            @env('local')
+                {{"Developent mode on"}}
+            @endenv
+
+            <br><br>
+            @auth
+                {{"This part will not execute"}}
+            @endauth
+            @guest
+                {{"Guest section: will execute"}}
+            @endguest
+
 
             <div class="form-group">
                 <label for="type">Type :</label>
@@ -239,5 +298,14 @@
         {{--                <button type="button" id="submit_form" class="btn btn-primary">Submit</button>--}}
     </form>
     </div>
-
+    <script>
+        var app = new Vue({
+            el: '#property_insert_section',
+            data: {
+                name: 'G5',
+                company: "Motorola",
+                price: 12500
+            }
+        })
+    </script>
 @stop

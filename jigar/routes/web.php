@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PhoneController;
+use App\Http\Controllers\FlightController;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -47,6 +48,7 @@ Route::delete('/customer/delete/{id}', [CustomerController::class, 'delete'])->n
 
 Route::middleware(['propertytest', 'throttle:propertyratelimit'])->prefix('property')->name('property.')->group(function () {
     Route::get('list', [PropertyController::class, 'list'])->name('list');
+    Route::get('chk-layout', [PropertyController::class, 'chkLayout'])->name('chk-layout');
     Route::get('insert', [PropertyController::class, 'insert'])->name('insert');
     Route::post('store', [PropertyController::class, 'store'])->name('store');
     Route::get('edit/{property}', [PropertyController::class, 'edit'])->name('edit')->missing(function (Request $request) {
@@ -73,6 +75,8 @@ Route::get('di', [TestingDB::class, 'checkDI'])->name('test.di');
 //Route::get('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq');
 Route::get('set-cookie', [TestingDB::class, 'setCookie'])->name('test.setCookie');
 //Route::get('get-cookie', [TestingDB::class, 'getCookie'])->name('test.getCookie');
+
+Route::get('flights/list', [FlightController::class, 'list'])->name('flight.list');
 
 Route::get('/test-json', function () {
     return [1, 2, 3];

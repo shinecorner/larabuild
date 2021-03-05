@@ -26,7 +26,7 @@ class Flight extends Model
     // public $timestamps = false;
 
 
-    // customize the format of your model's timestamps, 
+    // customize the format of your model's timestamps,
     // protected $dateFormat = 'U';
 
     // customize the names of the columns used
@@ -65,11 +65,7 @@ class Flight extends Model
     // protected $fillable = ['name->enabled','email->enabled'];
 
     // or
-    // protected $guarded  = ['name']; 
-
-
-
-
+    // protected $guarded  = ['name'];
 
 
 

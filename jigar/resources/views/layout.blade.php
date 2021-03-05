@@ -4,6 +4,7 @@
 <head>
 
     @include('includes.head')
+{{--    @includeIf('includes.head1')--}}
     @stack('custom-styles')
     @stack('custom-scripts')
 {{--    @once('custom-scripts')--}}
@@ -14,6 +15,8 @@
     <div class="container">
         <header class="row">
             @include('includes.header')
+{{--            @include('includes.header', ['status' => 'complete'])--}}
+
         </header>
         <div id="main" class="row">
             @yield('content')

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePropertyRequest;
 use App\Rules\Uppercase;
-
+use Illuminate\Support\Facades\View;
 
 use App\Models\Property;
 use Illuminate\Support\Facades\Validator;
@@ -88,7 +88,9 @@ class PropertyController extends Controller
 // abbreviation like NY=new York, US=united states // 'state' => 'exists:states,abbreviation'
 ////            'sq_feet' => 'size:12',
             'direction' => 'required',
-            'discription' => 'required_if:active,1',
+            'discription' => 'required',
+                'age' => 'required',
+//            'discription' => 'required_if:active,1',
 //            'active' => 'required',
 //            'discription' => 'exclude_if:active,1',
 //            'is_sold' => 'boolean',
@@ -344,7 +346,13 @@ class PropertyController extends Controller
     public function edit(Request $request, Property $property)
     {
         // $record = Property::find($id);
-        return view('property.edit', ['record' => $property]);
+//        return view('property.edit', ['record' => $property]);
+        return view('property.edit')->with('record',$property);
+
+//        return View::first(['custom.propertyedit','property.edit'], ['record' => $property]);
+//        if (View::exists('property.edit')) {
+//            exit('property Edit Page');
+//        }
     }
 
     public function update(Request $request, Property $property)

@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $connection = 'testing';
+//    protected $connection = 'testing';
     /**
      * The attributes that are mass assignable.
      *
@@ -63,5 +63,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
-    
+
 }

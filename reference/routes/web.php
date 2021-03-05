@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Http;
 //Route::middleware(['posttest'])->group(function(){
     Route::middleware(['posttest','throttle:postratelimit'])->name('post.')->prefix('post')->group(function () {
         Route::get('list', [PostController::class, 'list'])->name('list');
+        Route::get('chk-layout', [PostController::class, 'chkLayout'])->name('chk-layout');
         Route::get('insert', [PostController::class, 'insert'])->name('insert');
         Route::post('store', [PostController::class, 'store'])->name('store');
         Route::get('edit/{post}', [PostController::class, 'edit'])->name('edit');
@@ -41,6 +42,7 @@ use Illuminate\Support\Facades\Http;
     Route::get('relation', [TestController::class, 'relation'])->name('test.relation');
     Route::get('di', [TestController::class, 'checkDI'])->name('test.di');
 
+    Route::get('flights/list', [FlightController::class, 'list'])->name('flight.list');
     Route::get('/api/flights/{id}', function ($id) {
         return Flight::findOrFail($id);
     });

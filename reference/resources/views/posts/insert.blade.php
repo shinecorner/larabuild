@@ -1,5 +1,6 @@
 @extends('layout')
 @push('custom-scripts')
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
         // $(function(){
         //     $('#submit_form').click(function (){
@@ -22,9 +23,48 @@
         //     });
         // })
     </script>
+    <script>
+        var detail = @json($detail);
+        console.log(detail.name);
+    </script>
 @endpush
 @section('content')
-    <div class="container">
+    <div class="container" id="post_insert_section">
+        <?php //echo " &lt;a href=&#039;test&#039;&gt;Test&lt;/a&gt;" ?>
+
+            @each('custom.finedisplay', $detail, 'd')
+
+            @forelse ($detail as $d)
+                <li>{{ $d }}</li>
+            @empty
+                <p>No detail</p>
+            @endforelse
+            @foreach ($detail as $d)
+                {{$d}}
+                @if (!$loop->last)
+                    {{","}}
+                @endif
+            @endforeach
+        @production
+                {{"Production mode on"}}
+            @endproduction
+            @env('local')
+                {{"Developent mode on"}}
+            @endenv
+            @auth
+                {{"This part will not execute"}}
+            @endauth
+            @guest
+                {{"Guest section: will execute"}}
+            @endguest
+{{--        {!!  $company!!}--}}
+            @verbatim
+                Model, {{ name }}.
+                    <br>
+                Company, {{ company }}.
+                    <br>
+                Price, {{ price }}.
+            @endverbatim
         @if ($errors->any('post'))
 {{--            {{dd($errors)}}--}}
             <div class="row">
@@ -47,7 +87,7 @@
                         <label for="title">Title</label>
                         <input type="text" value="{{old('title')}}" class="form-control" id="title" name="title" maxlength="30"
                                placeholder="Enter title">
-                        @error('title')
+                        @error('title', 'post')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         {{--                            <div class="alert alert-danger">{{ $errors->post->first('title') }}</div>--}}
@@ -136,4 +176,14 @@
             </div>
         </div>
     </div>
+    <script>
+        var app = new Vue({
+            el: '#post_insert_section',
+            data: {
+                name: 'L3',
+                company: "Lenovo",
+                price: 500
+            }
+        })
+    </script>
 @stop

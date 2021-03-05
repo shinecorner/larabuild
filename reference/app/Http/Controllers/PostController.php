@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\View;
 
 class PostController extends Controller
 {
+    public function chkLayout(Request $request){
+        $posts = DB::table('posts')->get();
+        return view('custom.tasks', ['tasks' => $posts]);
+    }
     public function list(Request $request){
 
         dump($request->all());
@@ -33,9 +37,15 @@ class PostController extends Controller
         return view('posts.list', ['records' => $posts]);
     }
     public function insert(){
-        return view('posts.insert');
+        $array = ['name' => 'Jigar', 'surname' => 'Kariya', 'age' => 30];
+        $company = "<script>alert('Hi')</script>";
+        return view('posts.insert', ['detail' => $array, 'company' => $company]);
     }
     public function store(Request $request){
+                Validator::make($request->all(), [
+            'title' => 'required|unique:posts|max:255',
+            'description' => 'required',
+        ])->validateWithBag('post');
 //        print_r($request->all());exit;
         $validator = Validator::make($request->all(), [
 //            'title' => 'required|unique:posts|min:4',

@@ -13,6 +13,10 @@ use Illuminate\Validation\Rule;
 
 class PropertyController extends Controller
 {
+    public function chkLayout(Request $request){
+        $properties = Property::all();
+        return view('custom.tasks', ['tasks' => $properties]);
+    }
     public function list(Request $request)
     {
 //        if ($request->is('property/list')) {
@@ -28,7 +32,12 @@ class PropertyController extends Controller
 
     public function insert()
     {
-        return view('property.insert');
+        $array = ['name' => 'Jigar', 'surname' => 'Kariya', 'age' => 25];
+//        $company = "<script>alert('Hi')</script>";
+//        $array = [];
+//        return view('property.insert');
+        return view('property.insert', ['detail' => $array]);
+
     }
 
     public function store(Request $request)

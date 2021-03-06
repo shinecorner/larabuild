@@ -38,8 +38,6 @@ class AppServiceProvider extends ServiceProvider
         });
         View::share('person_name', 'jigar');
 
-        Blade::component('package-alert', Alert::class);
-
-        Blade::componentNamespace('Nightshade\\Views\\Components', 'nightshade');
+        Blade::withoutDoubleEncoding();
     }
 }

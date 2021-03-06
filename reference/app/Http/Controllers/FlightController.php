@@ -10,31 +10,33 @@ use Illuminate\Http\Request;
 use DB;
 //use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class FlightController extends Controller
 {
     public function list(Request $request){
 //        $flights = DB::table('flights')->paginate(5);
+
 //        $flights = DB::table('flights')->simplePaginate(5);
-//        $flights = Flight::paginate(5);
+        $flights = Flight::paginate(5);
+//        return $flights = Flight::paginate(5);
+//        $flights = Flight::paginate(2)->withQueryString()->fragment('list_of_flight');
+//        $flights->withPath('/admin/users');
+//        $flights->appends(['sort' => 'name']);
+
+
 //        $flights = Flight::where('active', 1)->paginate(5);
 
-        $data = DB::table('flights')->select('id','name','departure','destination')->get()->toArray();
-        $collection = collect($data);
-        $page = 1;
+        /*
+         * LengthAwarePaginator
+         */
+        /*$data = DB::table('flights')->select('id','name','departure','destination')->get()->toArray();
+        $page = $request->get('page') ? $request->get('page') : 1;
         $perPage = 5;
-
-        $flights = new LengthAwarePaginator(
-            array_slice($data, ($page - 1) * 25, 25),
-            $collection->count(),
-            $perPage,
-            $page,
-            ["path" => "search"]
-        );
-        $flights = $flights->paginate();
-//        dd($flights);
-//        $flights = $flights->toArray();
+        $items = $data instanceof Collection ? $data : Collection::make($data);
+        $flights = new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, ['path' => 'flights/list']);*/
         return view('flights.list', ['records' => $flights]);
     }
     public function store(Request $request)

@@ -28,4 +28,5 @@
         </tbody>
 
     </table>
+    {{ $records->onEachSide(2)->links() }}
 @stop

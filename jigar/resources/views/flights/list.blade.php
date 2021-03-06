@@ -25,7 +25,19 @@
                 <td> {{ $record->destination }} </td>
             </tr>
         @endforeach
+
+        {{--        @foreach($records as $record)--}}
+        {{--            <tr>--}}
+        {{--                <td> {{ $record['id'] }} </td>--}}
+        {{--                <td> {{ $record['name'] }} </td>--}}
+        {{--                <td> {{ $record['departure'] }} </td>--}}
+        {{--                <td> {{ $record['destination'] }} </td>--}}
+        {{--            </tr>--}}
+        {{--        @endforeach--}}
         </tbody>
 
     </table>
+    {{--    {{ $records->onEachSide(4)->links() }}--}}
+    {{--    {{ $records->links() }}--}}
+    {{ $records->onEachSide(2)->links() }}
 @stop

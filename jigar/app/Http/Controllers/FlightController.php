@@ -12,7 +12,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class FlightController extends Controller
 {
-    public function list(Request $request){
+    public function list(Request $request)
+    {
         $flights = Flight::paginate(5);
 
 //        return $flights = Flight::paginate(5);
@@ -31,7 +32,8 @@ class FlightController extends Controller
 //        $page = $request->get('page') ? $request->get('page') : 1;
 //        $perPage = 5;
 //        $items = $data instanceof Collection ? $data : Collection::make($data);
-//        $flights = new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, ['path' => '/flights/list']);
+//        echo $items->count();exit();
+        //        $flights = new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, ['path' => '/flights/list']);
 
 
 //        $flights = Flight::simplePaginate(5);

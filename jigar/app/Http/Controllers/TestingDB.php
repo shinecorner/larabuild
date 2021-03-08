@@ -523,6 +523,9 @@ class TestingDB extends Controller
 
     public function relation()
     {
+//        echo "this is relation method ";
+//        exit();
+        return "this is relation mwthod";
         // $user = User::find(2);
         // return $user->phone();
 

@@ -112,6 +112,10 @@
       <path value="$PROJECT_DIR$/jigar/vendor/opis/closure" />
       <path value="$PROJECT_DIR$/jigar/vendor/nikic/php-parser" />
       <path value="$PROJECT_DIR$/jigar/vendor/dragonmantank/cron-expression" />
+      <path value="$PROJECT_DIR$/jigar/vendor/laravel/sanctum" />
+      <path value="$PROJECT_DIR$/jigar/vendor/laravel/breeze" />
+      <path value="$PROJECT_DIR$/jigar/vendor/tightenco/ziggy" />
+      <path value="$PROJECT_DIR$/jigar/vendor/inertiajs/inertia-laravel" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">

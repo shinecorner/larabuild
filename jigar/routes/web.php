@@ -5,7 +5,9 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\TestingDB;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\PhoneController;
@@ -46,7 +48,7 @@ Route::get('/customer/edit/{id}', [CustomerController::class, 'edit'])->name('cu
 Route::put('/customer/update/{id}', [CustomerController::class, 'update'])->name('customer.update');
 Route::delete('/customer/delete/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
 
-Route::middleware(['propertytest', 'throttle:propertyratelimit'])->prefix('property')->name('property.')->group(function () {
+Route::middleware(['propertytest', 'throttle:propertyratelimit','auth'])->prefix('property')->name('property.')->group(function () {
     Route::get('list', [PropertyController::class, 'list'])->name('list');
     Route::get('chk-layout', [PropertyController::class, 'chkLayout'])->name('chk-layout');
     Route::get('insert', [PropertyController::class, 'insert'])->name('insert');
@@ -69,14 +71,14 @@ Route::delete('/contacts/delete/{id}', [ContactController::class, 'delete'])->na
 
 Route::get('qbuilder', [TestingDB::class, 'qbuilder']);
 Route::get('eloquent', [TestingDB::class, 'eloquent']);
-Route::get('relation', [TestingDB::class, 'relation']);
+Route::get('relation', [TestingDB::class, 'relation'])->name('test.relation');
 Route::get('/server', TestingDB::class);
 Route::get('di', [TestingDB::class, 'checkDI'])->name('test.di');
 //Route::get('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq');
 Route::get('set-cookie', [TestingDB::class, 'setCookie'])->name('test.setCookie');
 //Route::get('get-cookie', [TestingDB::class, 'getCookie'])->name('test.getCookie');
 
-Route::get('flights/list', [FlightController::class, 'list'])->name('flight.list');
+Route::get('flights/list', [FlightController::class, 'list'])->middleware(['auth'])->name('flight.list');
 
 Route::get('/test-json', function () {
     return [1, 2, 3];
@@ -117,7 +119,7 @@ Route::get('cookie-action', [TestingDB::class, 'setCookie'])->name('test.getCook
 
 Route::get('ext',function (){
 //    return redirect()->away('https://www.google.com');
-        return redirect()->route('property.list')->with('message', 'List executed');
+    return redirect()->route('property.list')->with('message', 'List executed');
 })->name('ext');
 
 
@@ -150,6 +152,24 @@ Route::get('/check-property', function () {
 
 
 
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+
+
+
 
 //Route::get('chk-json', function (){
 //    return response()->json([
@@ -177,7 +197,7 @@ Route::get('file-show', function (){
 });
 
 Route::get('chk-mecro', function (){
-        return response()->caps('my laptop');
+    return response()->caps('my laptop');
 });
 //    return redirect()->route('get-user', ['id' => 2]);
 

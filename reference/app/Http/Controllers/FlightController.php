@@ -13,10 +13,21 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
 
 class FlightController extends Controller
 {
     public function list(Request $request){
+        if (Auth::check()) {
+          dd(Auth::user());
+        }
+        else{
+          dd("You are Not logged in");
+        }
+//        $user = Auth::user();
+//        echo Auth::id();exit;
+//        echo $user->name;
+//        exit;
 //        $flights = DB::table('flights')->paginate(5);
 
 //        $flights = DB::table('flights')->simplePaginate(5);

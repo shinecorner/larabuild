@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Http;
 //    return view('welcome');
 //});
 //Route::middleware(['posttest'])->group(function(){
-    Route::middleware(['posttest','throttle:postratelimit'])->name('post.')->prefix('post')->group(function () {
+    Route::middleware(['posttest','throttle:postratelimit', 'auth'])->name('post.')->prefix('post')->group(function () {
         Route::get('list', [PostController::class, 'list'])->name('list');
         Route::get('chk-layout', [PostController::class, 'chkLayout'])->name('chk-layout');
         Route::get('insert', [PostController::class, 'insert'])->name('insert');
@@ -42,7 +42,7 @@ use Illuminate\Support\Facades\Http;
     Route::get('relation', [TestController::class, 'relation'])->name('test.relation');
     Route::get('di', [TestController::class, 'checkDI'])->name('test.di');
 
-    Route::get('flights/list', [FlightController::class, 'list'])->name('flight.list');
+    Route::get('flights/list', [FlightController::class, 'list'])->middleware(['auth:admin'])->name('flight.list');
     Route::get('/api/flights/{id}', function ($id) {
         return Flight::findOrFail($id);
     });
@@ -185,3 +185,13 @@ Route::get('chk-mecro', function (){
 //    return response('my laptop');
     return response()->caps('my laptop');
 });
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

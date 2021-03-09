@@ -11,6 +11,7 @@
                 name: "jigar",
                 message: 'Hello Good Afternoon!',
                 hovermessage: 'You loaded  this page on ' + new Date().toLocaleString(),
+                url: "http://google.com",
                 products: [
                     {name: "Motorola", price: 5600},
                     {name: "Samsing", price: 7500},
@@ -45,7 +46,8 @@
         <span v-else> Not Well jigar </span>
 
         <br><br>
-
+        <a :href="url">Click here</a>
+        <br><br>
         <ol>
             <li v-for="product in products" style="background-color: cadetblue">
                 @{{ product.name }}

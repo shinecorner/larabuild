@@ -902,6 +902,10 @@ class TestingDB extends Controller
     {
         return $request->cookie('name');
     }
+    public function testVue(Request $request){
+
+        return view('custom.testVue');
+    }
 
 }
 

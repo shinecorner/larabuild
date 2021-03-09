@@ -79,6 +79,7 @@ Route::get('set-cookie', [TestingDB::class, 'setCookie'])->name('test.setCookie'
 //Route::get('get-cookie', [TestingDB::class, 'getCookie'])->name('test.getCookie');
 
 Route::get('flights/list', [FlightController::class, 'list'])->middleware(['auth'])->name('flight.list');
+Route::get('test-vue', [TestingDB::class, 'testVue']);
 
 Route::get('/test-json', function () {
     return [1, 2, 3];

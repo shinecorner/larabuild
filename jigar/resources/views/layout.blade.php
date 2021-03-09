@@ -6,7 +6,6 @@
     @include('includes.head')
 {{--    @includeIf('includes.head1')--}}
     @stack('custom-styles')
-    @stack('custom-scripts')
 {{--    @once('custom-scripts')--}}
 
 </head>
@@ -28,5 +27,5 @@
 
     </div>
 </body>
-
+@stack('custom-scripts')
 </html>

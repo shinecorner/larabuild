@@ -906,6 +906,10 @@ class TestingDB extends Controller
 
         return view('custom.testVue');
     }
+    public function flightList(Request $request){
+        $flights = Flight::all()->toArray();
+        return view('custom.flightVue',['records' => $flights]);
+    }
 
 }
 

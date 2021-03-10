@@ -9,7 +9,7 @@
 <!-- load bootstrap from a cdn -->
 
 <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-{{--<script src="{{mix('js/app.js')}}"></script>--}}
+<script src="{{mix('js/app.js')}}"></script>
 <script src="{{asset('js/jquery.min.js')}}"></script>
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 

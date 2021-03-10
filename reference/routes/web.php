@@ -195,3 +195,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('test-vue', [TestController::class, 'testVue']);
+Route::get('flight-vue', [TestController::class, 'flightList']);

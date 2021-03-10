@@ -826,4 +826,11 @@ class TestController extends Controller
     public function getCookie(Request $request){
         return $request->cookie('name');
     }
+    public function testVue(Request $request){
+        return view('custom.testVue');
+    }
+    public function flightList(Request $request){
+        $flights = Flight::all()->toArray();
+        return view('custom.flightVue',['records' => $flights]);
+    }
 }

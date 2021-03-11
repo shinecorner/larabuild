@@ -1,5 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/flight/list.js": "/js/flight/list.js",
+    "/js/flight/lifecycle.js": "/js/flight/lifecycle.js",
+    "/js/color/crud.js": "/js/color/crud.js",
     "/css/app.css": "/css/app.css"
 }

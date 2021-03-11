@@ -198,3 +198,5 @@ require __DIR__.'/auth.php';
 
 Route::get('test-vue', [TestController::class, 'testVue']);
 Route::get('flight-vue', [TestController::class, 'flightList']);
+Route::view('vue-instance-check', 'custom.vueInstance');
+Route::view('vue-color-crud', 'custom.vueColor');

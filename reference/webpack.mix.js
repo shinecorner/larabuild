@@ -13,6 +13,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js').vue()
     .js('resources/js/flight/list.js', 'public/js/flight')
+    .js('resources/js/flight/lifecycle.js', 'public/js/flight')
+    .js('resources/js/color/crud.js', 'public/js/color')
     .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss'),

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Property;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Flight;
@@ -910,6 +911,23 @@ class TestingDB extends Controller
         $flights = Flight::all()->toArray();
         return view('custom.flightVue',['records' => $flights]);
     }
+    public function getFlights(Request $request){
+        return Flight::all();
+    }
+    public function getColors(Request $request){
+        return Color::all();
+    }
+    public function saveColor(Request $request){
+        return Color::create($request->all());
+    }
+    public function getSizes(Request $request){
+        return Size::all();
+    }
+    public function saveSize(Request $request){
+            return Size::create($request->all());
+    }
+
+
 
 }
 

@@ -15,6 +15,9 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .js('resources/js/test_vue/first.js', 'public/js/test_vue')
     .js('resources/js/flights/list.js', 'public/js/flights')
+    .js('resources/js/flights/lifecycle.js', 'public/js/flights')
+    .js('resources/js/color/crud.js', 'public/js/color')
+    .js('resources/js/size/crud.js', 'public/js/size')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),

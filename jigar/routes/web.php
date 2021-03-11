@@ -170,6 +170,9 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 
+Route::view('vue-instance-check', 'custom.vueInstance');
+Route::view('vue-color-crud','custom.vueColor');
+Route::view('vue-size-crud','custom.vueSize');
 
 
 

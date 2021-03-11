@@ -174,6 +174,8 @@ Route::view('vue-instance-check', 'custom.vueInstance');
 Route::view('vue-color-crud','custom.vueColor');
 Route::view('vue-size-crud','custom.vueSize');
 
+Route::view('vue-event','custom.vueEvent');
+
 
 
 //Route::get('chk-json', function (){

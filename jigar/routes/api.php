@@ -23,3 +23,12 @@ Route::post('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq
 //    'show'
 //]);
 Route::get('json-req', [TestingDB::class, 'jsonReq'])->name('test.jsonReq');
+Route::get('get-flights', [TestingDB::class, 'getFlights']);
+Route::get('get-colors', [TestingDB::class, 'getColors']);
+Route::post('save-color', [TestingDB::class, 'saveColor']);
+
+
+
+Route::get('get-sizes', [TestingDB::class, 'getSizes']);
+Route::post('save-size', [TestingDB::class, 'saveSize']);
+

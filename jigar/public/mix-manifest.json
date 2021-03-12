@@ -2,5 +2,9 @@
     "/js/app.js": "/js/app.js",
     "/js/test_vue/first.js": "/js/test_vue/first.js",
     "/js/flights/list.js": "/js/flights/list.js",
+    "/js/flights/lifecycle.js": "/js/flights/lifecycle.js",
+    "/js/color/crud.js": "/js/color/crud.js",
+    "/js/size/crud.js": "/js/size/crud.js",
+    "/js/test_vue/event.js": "/js/test_vue/event.js",
     "/css/app.css": "/css/app.css"
 }

@@ -14107,7 +14107,7 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 /*!***********************************!*\
-  !*** ./resources/js/size/crud.js ***!
+  !*** ./resources/js/role/crud.js ***!
   \***********************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
@@ -14115,34 +14115,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 
-vue__WEBPACK_IMPORTED_MODULE_1__.default.component('SizeDetail', {
+vue__WEBPACK_IMPORTED_MODULE_1__.default.component('RoleDetail', {
   props: ['item'],
-  template: "\n        <ul>\n        <li>{{item.cloth_size}}</li>\n        </ul>\n    "
+  template: "\n                <ul>\n                <li>{{item.role_name}}</li>\n                </ul>\n            "
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_1__.default({
   el: "#app",
   data: {
+    message: "hello",
     records: [],
-    size: ""
+    role: ""
   },
   methods: {
     submitForm: function submitForm() {
       var that = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post('api/save-size', {
-        cloth_size: that.size
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post('api/save-role', {
+        role_name: that.role
       }).then(function (response) {
         that.records.push(response.data);
       })["catch"](function (error) {}).then(function () {
-        that.size = "";
+        that.role = "";
       });
     }
   },
   created: function created() {
     var that = this;
-    axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/get-sizes').then(function (response) {
-      if (response.status == 200) {
-        that.records = response.data;
-      }
+    axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/get-roles').then(function (response) {
+      that.records = response.data;
     })["catch"](function (error) {});
   }
 });

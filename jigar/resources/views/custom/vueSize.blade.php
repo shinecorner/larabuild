@@ -11,10 +11,14 @@
                 <input type="text" name="size" v-model="size" />
                 <button type="button" @click="submitForm">save</button>
             </form>
-                <table>
-                    <tr v-for="record in records">
-                        <td>@{{record.cloth_size}}</td>
-                    </tr>
-                </table>
+{{--                <table>--}}
+{{--                    <tr v-for="record in records">--}}
+{{--                        <td>@{{record.cloth_size}}</td>--}}
+{{--                    </tr>--}}
+{{--                </table>--}}
+
+            <template v-for="record in records">
+                    <size-detail :item="record"></size-detail>
+            </template>
         </div>
 @stop

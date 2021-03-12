@@ -14115,6 +14115,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 
+vue__WEBPACK_IMPORTED_MODULE_1__.default.component('ColorDetail', {
+  props: ['item'],
+  template: "\n        <ul>\n            <li>{{item.cloth_color}}</li>\n        </ul>\n    "
+});
 var app = new vue__WEBPACK_IMPORTED_MODULE_1__.default({
   el: "#app",
   data: {

@@ -18,6 +18,8 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/flights/lifecycle.js', 'public/js/flights')
     .js('resources/js/color/crud.js', 'public/js/color')
     .js('resources/js/size/crud.js', 'public/js/size')
+    .js('resources/js/role/crud.js', 'public/js/role')
+    .js('resources/js/template_syntext.js', 'public/js')
     .js('resources/js/test_vue/event.js', 'public/js/test_vue')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),

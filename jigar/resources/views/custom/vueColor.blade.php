@@ -14,10 +14,15 @@
             <button type="button" @click="submitForm">Save</button>
         </form>
 
-        <table>
-            <tr v-for="record in records">
-                <td>@{{record.cloth_color}}</td>
-            </tr>
-        </table>
+{{--        <table>--}}
+{{--            <tr v-for="record in records">--}}
+{{--                <td>@{{record.cloth_color}}</td>--}}
+{{--            </tr>--}}
+{{--        </table>--}}
+
+
+        <template v-for="record in records">
+                <color-detail :item="record"></color-detail>
+        </template>
     </div>
 @stop

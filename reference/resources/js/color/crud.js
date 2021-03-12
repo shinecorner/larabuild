@@ -24,7 +24,7 @@ var app = new Vue({
 
         }
     },
-   created() {
+   mounted() {
        let that = this
        axios.get('api/get-colors').then(function (resp){
            // console.log(resp);

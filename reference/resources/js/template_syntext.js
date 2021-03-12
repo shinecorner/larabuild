@@ -9,7 +9,9 @@ new Vue({
         seen: true,
         attributeName: "href",
         phone: "",
-        url: "https://google.com"
+        url: "https://google.com",
+        type: "D",
+        loginType: "email"
     },
     methods: {
         changeMsg(){
@@ -32,6 +34,9 @@ new Vue({
             if((this.phone) && (/^\d+$/.test(this.phone))){
                 this.$refs.personForm.submit();
             }
+        },
+        toggleLoginType(){
+            this.loginType = (this.loginType === 'username') ? 'email' : 'username';
         }
     }
 })

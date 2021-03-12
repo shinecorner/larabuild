@@ -29,11 +29,51 @@
 {{--    <button type="button" @click="toggleMessage">Toggle message</button>--}}
 
 {{--    <a v-bind:[attributeName]="url"> Click here </a>--}}
-    <form ref="personForm" @submit.prevent="onSubmitForm">
-        <input value="111"/>
-        <input v-model="phone"/>
-        <button @focus="focusOnButton" @mouseover="mouseOverButton"> @{{message}} </button>
-    </form>
+
+
+{{--    <form ref="personForm" @submit.prevent="onSubmitForm">--}}
+{{--        <input value="111"/>--}}
+{{--        <input v-model="phone"/>--}}
+{{--        <button @focus="focusOnButton" @mouseover="mouseOverButton"> @{{message}} </button>--}}
+{{--    </form>--}}
+
+{{--    <template v-if="seen">--}}
+{{--        <h1>Title</h1>--}}
+{{--        <p>Paragraph 1</p>--}}
+{{--        <p>Paragraph 2</p>--}}
+{{--    </template>--}}
+
+
+{{--    <div v-if="Math.random() > 0.5">--}}
+{{--        Now you see me--}}
+{{--    </div>--}}
+{{--    <div v-else>--}}
+{{--        Now you don't--}}
+{{--    </div>--}}
+
+{{--    <div v-if="type === 'A'">--}}
+{{--        A--}}
+{{--    </div>--}}
+{{--    <div v-else-if="type === 'B'">--}}
+{{--        B--}}
+{{--    </div>--}}
+{{--    <div v-else-if="type === 'C'">--}}
+{{--        C--}}
+{{--    </div>--}}
+{{--    <div v-else>--}}
+{{--        Not A/B/C--}}
+{{--    </div>--}}
+
+
+    <template v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="login-by-username">
+    </template>
+    <template v-else>
+        <label>Email</label>
+        <input placeholder="Enter your email address" key="login-by-email">
+    </template>
+    <button type="button" @click="toggleLoginType">Toggle Login Type</button>
 </div>
 
 @stop

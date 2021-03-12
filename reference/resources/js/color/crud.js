@@ -1,6 +1,14 @@
 import Vue from 'vue'
 import axios from 'axios'
 
+Vue.component('ColorDetail',{
+    props: ["item"],
+    template: `
+        <ul>
+          <li>{{item.cloth_color}}</li>
+        </ul>
+    `
+});
 var app = new Vue({
    el: "#app",
    data: {

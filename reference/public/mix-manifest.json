@@ -4,5 +4,6 @@
     "/js/flight/lifecycle.js": "/js/flight/lifecycle.js",
     "/js/color/crud.js": "/js/color/crud.js",
     "/js/template_syntext.js": "/js/template_syntext.js",
+    "/js/computed_watcher.js": "/js/computed_watcher.js",
     "/css/app.css": "/css/app.css"
 }

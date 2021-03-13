@@ -837,6 +837,7 @@ class TestController extends Controller
         return Flight::all();
     }
     public function getColors(Request $request){
+        sleep(2);
         return Color::all();
     }
     public function saveColor(Request $request){

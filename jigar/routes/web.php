@@ -181,6 +181,8 @@ Route::view('vue-view-flight','custom.flightVue');
 Route::view('vue-event','custom.vueEvent');
 Route::view('vue-template-syntext', 'custom.vueTemplateSyntext');
 
+Route::view('computed-watcher', 'custom.vueComputeAndWatcher');
+
 
 
 //Route::get('chk-json', function (){

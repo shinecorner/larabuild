@@ -801,16 +801,16 @@ class TestingDB extends Controller
         return "Awesome " . $username . " " . $message;
     }
 
-    public function messageMe(Request $request)
-    {
-        //        return redirect("gm/56/message/How-are-you");
-        if ($request->route()->named('msg')) {
-            return "correct";
-        } else {
-            return "Incorrect";
-        }
-        return redirect()->route('gm', ['id' => 56, 'message' => 'How the development works going on?']);
-    }
+//    public function messageMe(Request $request)
+//    {
+//        //        return redirect("gm/56/message/How-are-you");
+//        if ($request->route()->named('msg')) {
+//            return "correct";
+//        } else {
+//            return "Incorrect";
+//        }
+//        return redirect()->route('gm', ['id' => 56, 'message' => 'How the development works going on?']);
+//    }
 
     public function checkDI(Request $request, Color $color)
     {
@@ -907,13 +907,13 @@ class TestingDB extends Controller
 
         return view('custom.testVue');
     }
-    public function flightList(Request $request){
-        $flights = Flight::all()->toArray();
-        return view('custom.flightVue',['records' => $flights]);
-    }
-    public function getFlights(Request $request){
-        return Flight::all();
-    }
+//    public function flightList(Request $request){
+//        $flights = Flight::all()->toArray();
+//        return view('custom.flightVue',['records' => $flights]);
+//    }
+//    public function getFlights(Request $request){
+//        return Flight::all();
+//    }
     public function getColors(Request $request){
         return Color::all();
     }
@@ -925,6 +925,15 @@ class TestingDB extends Controller
     }
     public function saveSize(Request $request){
             return Size::create($request->all());
+    }
+    public function getRoles(Request $request){
+        return Role::all();
+    }
+    public function saveRole(Request $request){
+        return Role::create($request->all());
+    }
+    public function getFlight(Request $request){
+        return Flight::all();
     }
 
 

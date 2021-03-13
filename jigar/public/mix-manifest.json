@@ -5,6 +5,8 @@
     "/js/flights/lifecycle.js": "/js/flights/lifecycle.js",
     "/js/color/crud.js": "/js/color/crud.js",
     "/js/size/crud.js": "/js/size/crud.js",
+    "/js/role/crud.js": "/js/role/crud.js",
+    "/js/template_syntext.js": "/js/template_syntext.js",
     "/js/test_vue/event.js": "/js/test_vue/event.js",
     "/css/app.css": "/css/app.css"
 }

@@ -14115,16 +14115,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 
+vue__WEBPACK_IMPORTED_MODULE_1__.default.component('FlightDescription', {
+  props: ['item'],
+  template: "\n        <ul>\n      <li>{{item.name}}</li>\n      <li>{{item.number}}</li>\n      <li>{{item.departure}}</li>\n      <li>{{item.destination}}</li>\n        </ul>"
+});
 var app = new vue__WEBPACK_IMPORTED_MODULE_1__.default({
   el: "#app",
   data: {
-    records: []
+    flights: []
   },
   created: function created() {
     var that = this;
     axios__WEBPACK_IMPORTED_MODULE_0___default().get('api/get-flights').then(function (response) {
       if (response.status == 200) {
-        that.records = response.data;
+        that.flights = response.data;
       }
     })["catch"](function (error) {
       console.log(error);

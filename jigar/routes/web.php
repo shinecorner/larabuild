@@ -80,6 +80,7 @@ Route::get('set-cookie', [TestingDB::class, 'setCookie'])->name('test.setCookie'
 
 Route::get('flights/list', [FlightController::class, 'list'])->middleware(['auth'])->name('flight.list');
 Route::get('test-vue', [TestingDB::class, 'testVue']);
+
 Route::get('flight-vue', [TestingDB::class, 'flightList']);
 
 Route::get('/test-json', function () {
@@ -173,8 +174,12 @@ require __DIR__.'/auth.php';
 Route::view('vue-instance-check', 'custom.vueInstance');
 Route::view('vue-color-crud','custom.vueColor');
 Route::view('vue-size-crud','custom.vueSize');
+Route::view('vue-role-crud','custom.vueRole');
+
+Route::view('vue-view-flight','custom.flightVue');
 
 Route::view('vue-event','custom.vueEvent');
+Route::view('vue-template-syntext', 'custom.vueTemplateSyntext');
 
 
 

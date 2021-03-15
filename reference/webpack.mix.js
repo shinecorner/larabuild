@@ -17,6 +17,7 @@ mix.js('resources/js/app.js', 'public/js').vue()
     .js('resources/js/color/crud.js', 'public/js/color')
     .js('resources/js/template_syntext.js', 'public/js')
     .js('resources/js/computed_watcher.js', 'public/js')
+    .js('resources/js/list_rendering.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
     require('postcss-import'),
     require('tailwindcss'),

@@ -5,5 +5,6 @@
     "/js/color/crud.js": "/js/color/crud.js",
     "/js/template_syntext.js": "/js/template_syntext.js",
     "/js/computed_watcher.js": "/js/computed_watcher.js",
+    "/js/list_rendering.js": "/js/list_rendering.js",
     "/css/app.css": "/css/app.css"
 }

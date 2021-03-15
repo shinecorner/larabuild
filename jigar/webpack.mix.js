@@ -21,6 +21,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/role/crud.js', 'public/js/role')
     .js('resources/js/template_syntext.js', 'public/js')
     .js('resources/js/computed_watcher.js', 'public/js')
+    .js('resources/js/list_rendering.js', 'public/js')
     .js('resources/js/test_vue/event.js', 'public/js/test_vue')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),

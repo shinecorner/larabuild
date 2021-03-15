@@ -182,6 +182,7 @@ Route::view('vue-event','custom.vueEvent');
 Route::view('vue-template-syntext', 'custom.vueTemplateSyntext');
 
 Route::view('computed-watcher', 'custom.vueComputeAndWatcher');
+Route::view('list-rendering', 'custom.vueListRendering');
 
 
 

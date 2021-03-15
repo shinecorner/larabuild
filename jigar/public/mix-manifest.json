@@ -8,6 +8,7 @@
     "/js/role/crud.js": "/js/role/crud.js",
     "/js/template_syntext.js": "/js/template_syntext.js",
     "/js/computed_watcher.js": "/js/computed_watcher.js",
+    "/js/list_rendering.js": "/js/list_rendering.js",
     "/js/test_vue/event.js": "/js/test_vue/event.js",
     "/css/app.css": "/css/app.css"
 }

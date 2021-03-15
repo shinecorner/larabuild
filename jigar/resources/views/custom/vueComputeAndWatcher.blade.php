@@ -13,12 +13,12 @@
         {{--        @{{reverseMessage}}--}}
         {{--            @{{currentDate()}}--}}
 
-{{--        <input type="text" v-model="firstName">--}}
-{{--        <input type="text" v-model="lastName">--}}
-{{--        <input type="text" v-model="fullName">--}}
+        {{--        <input type="text" v-model="firstName">--}}
+        {{--        <input type="text" v-model="lastName">--}}
+        {{--        <input type="text" v-model="fullName">--}}
         {{--                @{{fullName}}--}}
 
-                <input type="text" v-model="question"/>
+        <input type="text" v-model="question"/>
         @{{ answer }}
 
 

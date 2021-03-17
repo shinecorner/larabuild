@@ -203,3 +203,4 @@ Route::view('vue-color-crud', 'custom.vueColor');
 Route::view('vue-template-syntext', 'custom.vueTemplateSyntext');
 Route::view('computed-watcher', 'custom.vueComputeAndWatcher');
 Route::view('list-rendering', 'custom.vueListRendering');
+Route::view('vue-events', 'custom.vueEvents');

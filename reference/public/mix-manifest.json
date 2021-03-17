@@ -6,5 +6,6 @@
     "/js/template_syntext.js": "/js/template_syntext.js",
     "/js/computed_watcher.js": "/js/computed_watcher.js",
     "/js/list_rendering.js": "/js/list_rendering.js",
+    "/js/events.js": "/js/events.js",
     "/css/app.css": "/css/app.css"
 }

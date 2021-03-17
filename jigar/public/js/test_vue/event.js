@@ -12071,13 +12071,27 @@ var __webpack_exports__ = {};
   \****************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
- // var app = new Vue({
-//     el: '#example-1',
-//     data: {
-//         counter: 0
-//     }
-// })
-//
+
+var app = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
+  el: '#app',
+  data: {
+    message: "hello"
+  },
+  methods: {
+    divClicked: function divClicked() {
+      console.log("Div is Clicked");
+    },
+    btnPress: function btnPress() {
+      console.log("button is clicked");
+    },
+    kepPressed: function kepPressed(event) {
+      console.log("Key is pressed: " + event.keyCode);
+    },
+    mouseClick: function mouseClick(event) {
+      console.log("Mouse  is pressed" + event.button);
+    }
+  }
+}); //
 // var example2 = new Vue({
 //     el: "#example-2",
 //     data: {
@@ -12104,20 +12118,19 @@ __webpack_require__.r(__webpack_exports__);
 //         }
 //     }
 // })
-
-var example4 = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
-  el: "#example-4",
-  methods: {
-    warn: function warn(message, event) {
-      // now we have access to the native event
-      if (event) {
-        event.stopPropagation();
-      }
-
-      alert(message);
-    }
-  }
-});
+// var example4 = new Vue({
+//     el:"#example-4",
+//     methods: {
+//         warn: function (message, event) {
+//             // now we have access to the native event
+//             if (event) {
+//                 event.stopPropagation()
+//             }
+//             alert(message)
+//         }
+//     }
+//
+// })
 })();
 
 /******/ })()

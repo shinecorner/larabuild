@@ -53,19 +53,36 @@
 
         {{--        <input v-on:keyup.page-down="kepPressed">--}}
 
-{{--                <input v-on:keydown.tab.prevent="kepPressed">--}}
+        {{--                <input v-on:keydown.tab.prevent="kepPressed">--}}
 
         {{--        <input v-on:keyup.ctrl.67="kepPressed">--}}
         {{--        <input v-on:keyup.ctrl.88="kepPressed">--}}
 
-{{--        <input v-on:click.ctrl="kepPressed" />--}}
+        {{--        <input v-on:click.ctrl="kepPressed" />--}}
 
-{{--        <span v-on:click.left="mouseClick">This is Mouse Click testing</span>--}}
+        {{--        <span v-on:click.left="mouseClick">This is Mouse Click testing</span>--}}
 
-{{--        <span v-on:click.right.prevent="mouseClick">This is Mouse Click testing</span>--}}
+        {{--        <span v-on:click.right.prevent="mouseClick">This is Mouse Click testing</span>--}}
 
-{{--        <span v-on:click.middle="mouseClick">This is Mouse Click testing</span>--}}
+        {{--        <span v-on:click.middle="mouseClick">This is Mouse Click testing</span>--}}
 
 
+        {{--        <template v-for="item in items">--}}
+        {{--            <div v-bind:class="{ active: isActive }">--}}
+        {{--                @{{ item.isActive }}--}}
+        {{--            </div>--}}
+        {{--        </template>--}}
+
+        {{--        <div v-bind:class="{ active: isActive }"> thi</div>--}}
+
+        {{--        <div--}}
+        {{--            class="static"--}}
+        {{--            v-bind:class="{ active: isActive, 'text-danger': hasError }"--}}
+        {{--        >hello</div>--}}
+
+        {{--        <div class="static active">this is active class</div>--}}
+        {{--        <div v-bind:class="classObject">Hello</div>--}}
+
+        <div v-bind:class="classObject"></div>
     </div>
 @stop

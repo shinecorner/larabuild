@@ -12075,7 +12075,28 @@ __webpack_require__.r(__webpack_exports__);
 var app = new vue__WEBPACK_IMPORTED_MODULE_0__.default({
   el: '#app',
   data: {
-    message: "hello"
+    message: "hello",
+    // items: [
+    //     {name: 'jigar',surname: "kariya", isActive: 0},
+    //     {name: 'bhuva',surname: "sagar",  isActive: 1},
+    //     {name: 'bhagyesh',surname: "parmar",  isActive: 0},
+    // ]
+    // isActive: true,
+    // hasError: false
+    // classObject: {
+    //     active: true,
+    //     'text-danger': false
+    // }
+    isActive: true,
+    error: null
+  },
+  computed: {
+    classObject: function classObject() {
+      return {
+        active: this.isActive && !this.error,
+        'text-danger': this.error && this.error.type === 'fatal'
+      };
+    }
   },
   methods: {
     divClicked: function divClicked() {

@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
-import Destination from '../views/Destination.vue'
-import Size from '../views/Size.vue'
+import Color from '../views/Colors/Color.vue'
+import ColorInsert from '../views/Colors/Insert.vue'
+import ColorEdit from '../views/Colors/Update.vue'
+import Size from '../views/Size/Size.vue'
+import SizeInsert from '../views/Size/Insert.vue'
+import SizeEdit from '../views/Size/Update.vue'
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
@@ -12,14 +16,34 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
-    path: '/destination',
-    name: 'dest',
-    component: Destination
+    path: '/color',
+    name: 'colors.list',
+    component: Color
+  },
+  {
+    path: '/color/insert',
+    name: 'colors.insert',
+    component: ColorInsert
+  },
+  {
+    path: '/color/edit/:id',
+    name: 'colors.edit',
+    component: ColorEdit
   },
   {
     path: '/size',
-    name: 'size',
+    name: 'size.list',
     component: Size
+  },
+  {
+    path: '/size/insert',
+    name: 'sizes.insert',
+    component: SizeInsert
+  },
+  {
+    path: '/size/edit/:id',
+    name: 'sizes.edit',
+    component: SizeEdit
   },
   {
     path: '/about',

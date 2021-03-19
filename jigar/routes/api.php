@@ -29,6 +29,8 @@ Route::get('get-flights', [TestingDB::class, 'getFlight']);
 
 Route::get('get-colors', [TestingDB::class, 'getColors']);
 Route::post('save-color', [TestingDB::class, 'saveColor']);
+Route::get('fetch-color/{color}', [TestingDB::class, 'fetchColor']);
+
 
 Route::get('get-roles', [TestingDB::class, 'getRoles']);
 Route::post('save-role', [TestingDB::class, 'saveRole']);
@@ -36,4 +38,6 @@ Route::post('save-role', [TestingDB::class, 'saveRole']);
 
 Route::get('get-sizes', [TestingDB::class, 'getSizes']);
 Route::post('save-size', [TestingDB::class, 'saveSize']);
+Route::post('update-size/{size}', [TestingDB::class, 'updateSize']);
+Route::get('fetch-size/{size}', [TestingDB::class, 'fetchSize']);
 

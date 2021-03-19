@@ -5,7 +5,7 @@
     <nav>
       <ul>
         <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/destination">Destination</router-link></li>
+        <li><router-link to="/color">Color</router-link></li>
         <li><router-link to="/size">Size</router-link></li>
 
       </ul>

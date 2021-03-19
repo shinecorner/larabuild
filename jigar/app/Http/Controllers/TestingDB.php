@@ -920,11 +920,18 @@ class TestingDB extends Controller
     public function saveColor(Request $request){
         return Color::create($request->all());
     }
+    public function fetchColor(Request $request,Color $color){
+        return $color;
+    }
+    
     public function getSizes(Request $request){
         return Size::all();
     }
     public function saveSize(Request $request){
             return Size::create($request->all());
+    }
+    public function fetchSize(Request $request,Size $size){
+        return $size;
     }
     public function getRoles(Request $request){
         return Role::all();
@@ -935,7 +942,11 @@ class TestingDB extends Controller
     public function getFlight(Request $request){
         return Flight::all();
     }
-
+    public function updateSize(Request $request, Size $size)	{
+    	$size->cloth_size = $request->get('cloth_size');
+    	$size->save();
+    	return $size;
+    }
 
 
 }

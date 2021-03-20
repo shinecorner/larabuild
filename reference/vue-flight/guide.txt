@@ -1,4 +1,0 @@
-npm install bootstrap --save
-npm install @popperjs/core --save
-npm install portal-vue --save
-npm install bootstrap-vue --save

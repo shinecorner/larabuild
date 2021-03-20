@@ -1,20 +1,15 @@
 <template>
   <header>
-    <div>
-      <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand to="/">Home</b-navbar-brand>
+    <img alt="Vue logo" src="../assets/logo.png" height="50">
+    <p>My Vue.js Application</p>
+    <nav>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/color">Color</router-link></li>
+        <li><router-link to="/size">Size</router-link></li>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-        <b-collapse id="nav-collapse" is-nav>
-          <b-navbar-nav>
-            <b-nav-item to="/colors">Colors</b-nav-item>
-          </b-navbar-nav>
-
-          <!-- Right aligned nav items -->
-        </b-collapse>
-      </b-navbar>
-    </div>
+      </ul>
+    </nav>
   </header>
 </template>
 

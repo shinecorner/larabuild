@@ -30,9 +30,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         Blade::withoutDoubleEncoding();
-        $this->app->singleton(Color::class, function ($app) {
-            return Color::find(3);
-        });
+//        $this->app->singleton(Color::class, function ($app) {
+//            return Color::find(3);
+//        });
 
         Response::macro('caps', function ($value) {
             return Response::make(strtoupper($value));

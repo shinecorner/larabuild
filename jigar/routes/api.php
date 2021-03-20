@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ColorController;
+use App\Http\Controllers\Api\ColorController;
+use App\Http\Controllers\Api\SizeController;
 use App\Http\Controllers\TestingDB;
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,9 @@ use App\Http\Controllers\TestingDB;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::apiResource('colors', ColorController::class);
+Route::apiResource('sizes', SizeController::class);
+
 Route::post('check-req/{id}', [TestingDB::class, 'checkReq'])->name('test.chkReq');
 //Route::apiResource('colors', ColorController::class)->except([
 //    'show'

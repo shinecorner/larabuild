@@ -30,7 +30,7 @@ export default Vue.extend({
   methods: {
     OmSubmitForm () {
       // console.log(this.color);
-      axios.post('http://larabuild.local/api/update-size/' + this.form.id, this.form).then(resp => {
+      axios.put('http://larabuild.local/api/sizes/' + this.form.id, this.form).then(resp => {
         console.log(resp.data)
       }).catch(function (error) {
         console.log(error)
@@ -42,7 +42,7 @@ export default Vue.extend({
   },
   created () {
     console.log(this.form.id)
-    axios.get('http://larabuild.local/api/fetch-size/' + this.form.id).then(resp => {
+    axios.get('http://larabuild.local/api/sizes/' + this.form.id).then(resp => {
       if (resp.status === 200) {
         this.form.cloth_size = resp.data.cloth_size
       }

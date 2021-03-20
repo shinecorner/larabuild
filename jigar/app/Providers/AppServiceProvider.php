@@ -30,9 +30,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
-        $this->app->singleton(Color::class, function ($app) {
-            return Color::find(3);
-        });
+//        $this->app->singleton(Color::class, function ($app) {
+//            return Color::find(3);
+//        });
         Schema::defaultStringLength(191);
 
         Response::macro('caps', function ($value) {

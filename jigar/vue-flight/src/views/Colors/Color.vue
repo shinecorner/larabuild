@@ -7,11 +7,13 @@
     </b-row>
     <b-row>
       <b-col lg="12">
-        <b-table striped hover :items="records" :fields="fields">
+        <b-table ref="table" striped hover :items="recordProvider" :fields="fields">
           <template #cell(actions)="row">
-            <b-button size="sm" @click="row.toggleDetails" :to="{ path: '/color/edit/:id'}">
-              {{ row.detailsShowing ? 'Hide' : 'Show' }} Edit
-            </b-button>
+            <b-dropdown variant="primary" text="Actions">
+              <b-dropdown-item :to="{ name: 'colors.edit', params: {id: row.item.id }}">Edit</b-dropdown-item>
+              <b-dropdown-divider></b-dropdown-divider>
+              <b-dropdown-item @click="onDelete(row.item.id)">Delete</b-dropdown-item>
+            </b-dropdown>
           </template>
         </b-table>
       </b-col>
@@ -23,6 +25,7 @@
           :total-rows="totalRecords"
           :per-page="perPage"
           aria-controls="my-table"
+          @change="handlePageChange"
         ></b-pagination>
       </b-col>
     </b-row>
@@ -39,7 +42,7 @@ export default Vue.extend({
       message: 'destination list',
       perPage: 3,
       currentPage: 1,
-      records: [],
+      totalRecords: 0,
       fields: [
         {
           key: 'id',
@@ -58,19 +61,28 @@ export default Vue.extend({
       ]
     }
   },
-  created () {
-    console.log('xyz')
-    axios.get('http://larabuild.local/api/get-colors').then(resp => {
-      if (resp.status === 200) {
-        this.records = resp.data
+  methods: {
+    onDelete (id) {
+      axios.delete('http://larabuild.local/api/colors/' + id).then(resp => {
+        console.log(resp.data)
+        this.$refs.table.refresh()
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    async recordProvider () {
+      try {
+        const response = await axios.get('http://larabuild.local/api/colors?page=' + this.currentPage)
+        this.totalRecords = response.data.total
+        this.currentPage = response.data.current_page
+        return response.data.data
+      } catch (error) {
+        return []
       }
-    }).catch(function (error) {
-      console.log(error)
-    })
-  },
-  computed: {
-    totalRecords () {
-      return this.records.length
+    },
+    handlePageChange (value) {
+      this.currentPage = value
+      this.$refs.table.refresh()
     }
   }
 })

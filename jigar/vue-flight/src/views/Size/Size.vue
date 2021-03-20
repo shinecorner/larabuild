@@ -7,12 +7,12 @@
     </b-row>
     <b-row>
       <b-col lg="12">
-        <b-table striped hover :items="records" :fields="fields">
+        <b-table ref="table" striped hover :items="recordProvider" :fields="fields">
           <template #cell(actions)="row">
             <b-dropdown variant="primary" text="Actions">
               <b-dropdown-item :to="{ name: 'sizes.edit', params: {id: row.item.id }}">Edit</b-dropdown-item>
               <b-dropdown-divider></b-dropdown-divider>
-              <b-dropdown-item>Delete</b-dropdown-item>
+              <b-dropdown-item @click="onDelete(row.item.id)">Delete</b-dropdown-item>
             </b-dropdown>
           </template>
         </b-table>
@@ -25,6 +25,7 @@
           :total-rows="totalRecords"
           :per-page="perPage"
           aria-controls="my-table"
+          @change="handlePageChange"
         ></b-pagination>
       </b-col>
     </b-row>
@@ -40,7 +41,7 @@ export default Vue.extend({
     return {
       perPage: 3,
       currentPage: 1,
-      records: [],
+      totalRecords: 0,
       fields: [
         {
           key: 'id',
@@ -59,34 +60,28 @@ export default Vue.extend({
       ]
     }
   },
-  created () {
-    axios.get('http://larabuild.local/api/get-sizes').then(response => {
-      if (response.status === 200) {
-        this.records = response.data
-      }
-    }).catch(error => {
-      console.log(error)
-    })
-  },
   methods: {
-    onEdit (id) {
-      this.edit = this.edit !== id ? id : null
-    }
-    // onDelete (id) {
-    //   axios.delete('/api/products/' + id)
-    //     .then(response => {
-    //       const index = this.size.findIndex(size => post.id === id) // find the post index
-    //       if (~index) // if the post exists in array
-    //       {
-    //         this.posts.splice(index, 1)
-    //       } //delete the post
-    //     })
-    //
-    // }
-  },
-  computed: {
-    totalRecords () {
-      return this.records.length
+    onDelete (id) {
+      axios.delete('http://larabuild.local/api/sizes/' + id).then(resp => {
+        console.log(resp.data)
+        this.$refs.table.refresh()
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    async recordProvider () {
+      try {
+        const response = await axios.get('http://larabuild.local/api/sizes?page=' + this.currentPage)
+        this.totalRecords = response.data.total
+        this.currentPage = response.data.current_page
+        return response.data.data
+      } catch (error) {
+        return []
+      }
+    },
+    handlePageChange (value) {
+      this.currentPage = value
+      this.$refs.table.refresh()
     }
   }
 })

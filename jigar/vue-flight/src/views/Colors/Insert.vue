@@ -29,7 +29,7 @@ export default Vue.extend({
   methods: {
     OmSubmitForm () {
       // console.log(this.color);
-      axios.post('http://larabuild.local/api/save-color', this.form).then(resp => {
+      axios.post('http://larabuild.local/api/colors', this.form).then(resp => {
         console.log(resp.data)
       }).catch(function (error) {
         console.log(error)

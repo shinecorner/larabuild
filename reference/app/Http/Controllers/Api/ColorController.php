@@ -17,7 +17,12 @@ class ColorController extends Controller
     {
         $recordPerPage = 3;
         $page = $request->get('page') ? $request->get('page') : 1;
-        return Color::paginate($recordPerPage);
+        $searchText = $request->get('searchText') ? $request->get('searchText') : "";
+        $colors = Color::query();
+        if($searchText){
+            $colors->where('cloth_color', 'like',$searchText."%");
+        }
+        return $colors->paginate($recordPerPage);
     }
 
     /**

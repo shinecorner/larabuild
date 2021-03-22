@@ -38,6 +38,7 @@
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "typescript": "~4.1.5",
+    "vue-alertify": "^1.1.0",
     "vue-template-compiler": "^2.6.11"
   }
 }

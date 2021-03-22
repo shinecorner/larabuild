@@ -63,18 +63,54 @@ export default Vue.extend({
   },
   methods: {
     onDelete (id) {
-      axios.delete('http://larabuild.local/api/colors/' + id).then(resp => {
-        console.log(resp.data)
-        this.$refs.table.refresh()
-      }).catch(function (error) {
-        console.log(error)
+      // console.log(id)
+      this.boxTwo = ''
+      this.$bvModal.msgBoxConfirm('Please confirm that you want to delete this record.', {
+        title: 'Please Confirm',
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'danger',
+        okTitle: 'YES',
+        cancelTitle: 'NO',
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true
       })
+        .then(value => {
+          console.log(id)
+          if (value) {
+            axios.delete('http://larabuild.local/api/colors/' + id).then(resp => {
+              console.log(resp.data)
+              this.$refs.table.refresh()
+            }).catch(function (error) {
+              console.log(error)
+            })
+          }
+          this.boxTwo = value
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
+
+    // onDelete (id) {
+    //   axios.delete('http://larabuild.local/api/colors/' + id).then(resp => {
+    //     console.log(resp.data)
+    //     this.$refs.table.refresh()
+    //   }).catch(function (error) {
+    //     console.log(error)
+    //   })
+    // },
     async recordProvider () {
       try {
         const response = await axios.get('http://larabuild.local/api/colors?page=' + this.currentPage)
         this.totalRecords = response.data.total
         this.currentPage = response.data.current_page
+        const lastPage = response.data.last_page
+        if (this.currentPage > lastPage) {
+          this.currentPage = lastPage
+          this.$refs.table.refresh()
+        }
         return response.data.data
       } catch (error) {
         return []
